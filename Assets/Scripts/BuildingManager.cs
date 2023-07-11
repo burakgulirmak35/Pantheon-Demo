@@ -8,11 +8,11 @@ public class BuildingManager : MonoBehaviour
     private Camera mainCamera;
     private Transform building;
     [Header("Holders")]
-    [SerializeField] private Transform HarvesterHolder;
+    [SerializeField] private Transform BuildingHolder;
 
     private void Awake()
     {
-        building = prefabs.BuildingTypeList[0];
+        building = prefabs.PowerPlant;
     }
 
     private void Start()
@@ -24,16 +24,19 @@ public class BuildingManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(building, GetMouseWorldPosition(), Quaternion.identity, HarvesterHolder);
+            if (building != null)
+            {
+                Instantiate(building, GetMouseWorldPosition(), Quaternion.identity, BuildingHolder);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.T))
         {
-            building = prefabs.BuildingTypeList[0];
+            building = prefabs.PowerPlant;
         }
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            building = prefabs.BuildingTypeList[1];
+            building = prefabs.PowerPlant;
         }
     }
 

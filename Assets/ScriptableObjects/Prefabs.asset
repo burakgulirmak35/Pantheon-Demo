@@ -12,11 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d889b5890a2be2419c4e232addc3b0e, type: 3}
   m_Name: Prefabs
   m_EditorClassIdentifier: 
-  BuildingTypeList:
-  - {fileID: 7199331509251857780, guid: 68778a4f50e5c8241b64e55e3d9c5afb, type: 3}
-  - {fileID: 7199331509251857780, guid: 7b6a7b89b2fdf4e449a54a938436fc32, type: 3}
-  - {fileID: 7199331509251857780, guid: fd3deff1c2dd32d4a98dc3aff9cac8f6, type: 3}
-  ResourceTypeList:
-  - {fileID: 11400000, guid: 231ff053078d8f04ca1ad3f1de2f3bae, type: 2}
-  - {fileID: 11400000, guid: 8c64258fc25f1ac4ea5ba441f9b5f2c9, type: 2}
-  - {fileID: 11400000, guid: b1964700001860748802481286e09058, type: 2}
+  PowerPlant: {fileID: 7199331509251857780, guid: 68778a4f50e5c8241b64e55e3d9c5afb, type: 3}
