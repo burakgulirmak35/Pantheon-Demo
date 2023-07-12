@@ -8,4 +8,6 @@ public class SettingsSO : ScriptableObject
     public int PowerPlantProductAmount;
     public float PowerPlantBuildTime;
     public float PowerPlantProductTime;
+    [Space]
+    public int BarracksBuildPrice;
 }

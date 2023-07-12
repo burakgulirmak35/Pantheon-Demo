@@ -16,3 +16,4 @@ MonoBehaviour:
   PowerPlantProductAmount: 1
   PowerPlantBuildTime: 1
   PowerPlantProductTime: 5
+  BarracksBuildPrice: 5

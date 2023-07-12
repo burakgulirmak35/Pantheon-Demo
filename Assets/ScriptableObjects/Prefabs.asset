@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Prefabs
   m_EditorClassIdentifier: 
   PowerPlant: {fileID: 7199331509251857780, guid: 68778a4f50e5c8241b64e55e3d9c5afb, type: 3}
+  Barracks: {fileID: 7199331509251857780, guid: c7f9d3d901930334f86dab6e3760a0a2, type: 3}
+  PowerPlantSprite: {fileID: 21300000, guid: 54c7bd123a6138d45aeeb88e1c190804, type: 3}
+  BarracksSprite: {fileID: 21300000, guid: 8513b717eba2e4e49a5e2aae0c77cd5b, type: 3}

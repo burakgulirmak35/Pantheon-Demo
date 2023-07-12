@@ -8,6 +8,8 @@ public class PowerPlant : MonoBehaviour
 
     private void Start()
     {
+        UIManager.Instance.AddResource(-settings.PowerPlantBuildPrice);
+        UIManager.Instance.UnSelectBuildingType();
         StartCoroutine(GenerateResourceCoro());
     }
 
@@ -16,7 +18,7 @@ public class PowerPlant : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(settings.PowerPlantProductTime);
-            UIManager.Instance.AddPower(settings.PowerPlantProductAmount);
+            UIManager.Instance.AddResource(settings.PowerPlantProductAmount);
         }
     }
 

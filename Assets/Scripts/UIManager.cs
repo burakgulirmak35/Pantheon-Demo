@@ -7,10 +7,17 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private PrefabsSO prefabs;
+    [SerializeField] private SettingsSO settings;
     [Header("Text")]
-    [SerializeField] private TextMeshProUGUI txt_Power;
+    [SerializeField] private TextMeshProUGUI txtPower;
     [Space]
-    private int PowerAmount;
+    private int ResourceAmount;
+    [Header("Buttons")]
+    [SerializeField] private Image imgPowerPlantSelected;
+    [SerializeField] private Image imgBarracksSelected;
+    [Space]
+    [SerializeField] private TextMeshProUGUI txtPowerPlantPrice;
+    [SerializeField] private TextMeshProUGUI txtBarracksPrice;
 
     public static UIManager Instance { get; private set; }
 
@@ -18,18 +25,52 @@ public class UIManager : MonoBehaviour
     {
         Instance = this;
         LoadResources();
+        SetButtons();
     }
 
-    public void AddPower(int amount)
+    private void SetButtons()
     {
-        PowerAmount += amount;
-        txt_Power.text = PowerAmount.ToString();
-        PlayerPrefs.SetInt("PowerAmount", PowerAmount);
+        txtPowerPlantPrice.text = "$" + settings.PowerPlantBuildPrice.ToString();
+        txtBarracksPrice.text = "$" + settings.BarracksBuildPrice.ToString();
+    }
+
+    public void AddResource(int amount)
+    {
+        ResourceAmount += amount;
+        txtPower.text = ResourceAmount.ToString();
+        PlayerPrefs.SetInt("ResourceAmount", ResourceAmount);
     }
 
     private void LoadResources()
     {
-        PowerAmount = PlayerPrefs.GetInt("PowerAmount", 0);
-        txt_Power.text = PowerAmount.ToString();
+        ResourceAmount = PlayerPrefs.GetInt("ResourceAmount", 50);
+        txtPower.text = ResourceAmount.ToString();
+    }
+
+    public void btn_PowerPlant()
+    {
+        if (ResourceAmount >= settings.PowerPlantBuildPrice)
+        {
+            imgPowerPlantSelected.enabled = true;
+            imgBarracksSelected.enabled = false;
+            BuildingManager.Instance.SelectPowerPlant();
+        }
+    }
+
+    public void btn_Barracks()
+    {
+        if (ResourceAmount >= settings.BarracksBuildPrice)
+        {
+            imgPowerPlantSelected.enabled = false;
+            imgBarracksSelected.enabled = true;
+            BuildingManager.Instance.SelectBarrracks();
+        }
+    }
+
+    public void UnSelectBuildingType()
+    {
+        imgPowerPlantSelected.enabled = false;
+        imgBarracksSelected.enabled = false;
+        BuildingManager.Instance.UnSelect();
     }
 }
