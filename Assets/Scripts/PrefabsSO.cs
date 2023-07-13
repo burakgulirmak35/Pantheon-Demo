@@ -11,7 +11,5 @@ public class PrefabsSO : ScriptableObject
     public Sprite PowerPlantSprite;
     public Sprite BarracksSprite;
     [Space]
-    public Transform Soldier1;
-    public Transform Soldier2;
-    public Transform Soldier3;
+    public Transform[] Soldiers;
 }
