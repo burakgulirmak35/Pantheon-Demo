@@ -303,7 +303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623879132283799426}
   m_LocalRotation: {x: -0, y: -0, z: -0.70710576, w: 0.70710784}
-  m_LocalPosition: {x: 2.37, y: -2.69, z: 0}
+  m_LocalPosition: {x: 1.58, y: -2.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 3256481928623039807}
   - component: {fileID: 5360224260927828885}
   m_Layer: 0
-  m_Name: Flag
+  m_Name: firstPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -579,7 +579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5615331435874825468}
   m_LocalRotation: {x: -0, y: -0, z: -0.70710576, w: 0.70710784}
-  m_LocalPosition: {x: 2.37, y: -2.69, z: 0}
+  m_LocalPosition: {x: 2.73, y: -3.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -747,7 +747,7 @@ MonoBehaviour:
   prefabs: {fileID: 11400000, guid: 283d164945d3e964894baa6c2dcb1729, type: 2}
   imgHealthBarFill: {fileID: 7926183157266682123}
   spawnPoint: {fileID: 2369618438563902894}
-  flag: {fileID: 3256481928623039807}
+  firstPoint: {fileID: 3256481928623039807}
 --- !u!61 &7260947454956283462
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -36,7 +36,6 @@ public class GameController : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
         {
-            BuildingManager.Instance.SetFlag();
             ControlUnits();
         }
         if (Input.GetKeyDown(KeyCode.Escape))

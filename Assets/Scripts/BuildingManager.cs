@@ -33,14 +33,6 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-    public void SetFlag()
-    {
-        if (ChoosenBarraks != null)
-        {
-            ChoosenBarraks.SetFlag(UtilsClass.GetMouseWorldPosition());
-        }
-    }
-
     public void ShowGhost()
     {
         if (building != null)
@@ -76,15 +68,6 @@ public class BuildingManager : MonoBehaviour
         return collider2DArray.Length == 0;
     }
 
-
-    private void UnSelectBarracks()
-    {
-        if (ChoosenBarraks != null)
-        {
-            ChoosenBarraks.UnSelect();
-        }
-    }
-
     public void SelectBuilding(PowerPlant powerPlant)
     {
         UIManager.Instance.SelectPowerPlant();
@@ -92,7 +75,6 @@ public class BuildingManager : MonoBehaviour
 
     public void SelectBuilding(Barracks barracks)
     {
-        UnSelectBarracks();
         ChoosenBarraks = barracks;
         UIManager.Instance.SelectBarracks();
     }

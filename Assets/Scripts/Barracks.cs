@@ -12,7 +12,7 @@ public class Barracks : MonoBehaviour
     [SerializeField] private Image imgHealthBarFill;
     [Space]
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private Transform flag;
+    [SerializeField] private Transform firstPoint;
     private float health;
     private SoldierUnit soldierUnit;
 
@@ -28,17 +28,6 @@ public class Barracks : MonoBehaviour
     private void OnMouseDown()
     {
         BuildingManager.Instance.SelectBuilding(this);
-        flag.gameObject.SetActive(true);
-    }
-
-    public void SetFlag(Vector3 _position)
-    {
-        flag.position = _position;
-    }
-
-    public void UnSelect()
-    {
-        flag.gameObject.SetActive(false);
     }
 
     public void AddHealth(float amount)
@@ -58,6 +47,6 @@ public class Barracks : MonoBehaviour
     public void SpawnUnit(int _unitID)
     {
         soldierUnit = Instantiate(prefabs.Soldiers[_unitID], spawnPoint.position, Quaternion.identity).GetComponent<SoldierUnit>();
-        soldierUnit.MoveTo(flag.position);
+        soldierUnit.MoveTo(firstPoint.position);
     }
 }
