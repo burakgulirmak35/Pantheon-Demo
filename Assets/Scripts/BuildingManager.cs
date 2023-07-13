@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using NavMeshPlus.Components;
 
 public class BuildingManager : MonoBehaviour
 {
@@ -13,9 +13,11 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] private Transform BuildingHolder;
     public static BuildingManager Instance { get; private set; }
     private Barracks ChoosenBarraks;
+    private NavMeshSurface Surface2D;
 
     private void Awake()
     {
+        Surface2D = FindObjectOfType<NavMeshSurface>();
         Instance = this;
     }
 
@@ -26,6 +28,7 @@ public class BuildingManager : MonoBehaviour
             if (CanSpawnBuilding(building, UtilsClass.GetMouseWorldPosition()))
             {
                 Instantiate(building, UtilsClass.GetMouseWorldPosition(), Quaternion.identity, BuildingHolder);
+                Surface2D.UpdateNavMesh(Surface2D.navMeshData);
             }
         }
     }
