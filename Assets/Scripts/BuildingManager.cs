@@ -12,7 +12,7 @@ public class BuildingManager : MonoBehaviour
     [Header("Holders")]
     [SerializeField] private Transform BuildingHolder;
     public static BuildingManager Instance { get; private set; }
-    private Barracks ChoosenBarraks;
+    [HideInInspector] public Barracks ChoosenBarraks;
     private NavMeshSurface Surface2D;
 
     private void Awake()
@@ -76,11 +76,6 @@ public class BuildingManager : MonoBehaviour
         return collider2DArray.Length == 0;
     }
 
-    public void SetBarracks(Barracks _barracks)
-    {
-        UnSelectBarracks();
-        ChoosenBarraks = _barracks;
-    }
 
     private void UnSelectBarracks()
     {
@@ -89,9 +84,16 @@ public class BuildingManager : MonoBehaviour
             ChoosenBarraks.UnSelect();
         }
     }
-}
 
-public enum BuildingType
-{
-    Barracks, PowerPlant
+    public void SelectBuilding(PowerPlant powerPlant)
+    {
+        UIManager.Instance.SelectPowerPlant();
+    }
+
+    public void SelectBuilding(Barracks barracks)
+    {
+        UnSelectBarracks();
+        ChoosenBarraks = barracks;
+        UIManager.Instance.SelectBarracks();
+    }
 }

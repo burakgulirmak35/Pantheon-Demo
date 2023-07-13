@@ -25,8 +25,7 @@ public class Barracks : MonoBehaviour
 
     private void OnMouseDown()
     {
-        UIManager.Instance.SelectBuilding(BuildingType.Barracks);
-        BuildingManager.Instance.SetBarracks(this);
+        BuildingManager.Instance.SelectBuilding(this);
         flag.gameObject.SetActive(true);
     }
 
@@ -52,5 +51,10 @@ public class Barracks : MonoBehaviour
             health = 0;
         }
         DOTween.To(() => imgHealthBarFill.fillAmount, x => imgHealthBarFill.fillAmount = x, health / settings.BarracksHealth, 0.25f).SetEase(Ease.Linear);
+    }
+
+    public void SpawnUnit(UnitType unitType)
+    {
+
     }
 }

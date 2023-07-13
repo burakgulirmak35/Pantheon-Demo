@@ -25,17 +25,7 @@ public class GameController : MonoBehaviour
         }
         if (Input.GetMouseButton(0))
         {
-            Vector3 currentMousePosition = UtilsClass.GetMouseWorldPosition();
-            Vector3 lowerLeft = new Vector3(
-                Mathf.Min(startPosition.x, currentMousePosition.x),
-                Mathf.Min(startPosition.y, currentMousePosition.y)
-            );
-            Vector3 upperRight = new Vector3(
-                Mathf.Max(startPosition.x, currentMousePosition.x),
-                Mathf.Max(startPosition.y, currentMousePosition.y)
-            );
-            selectionAreaTransform.position = lowerLeft;
-            selectionAreaTransform.localScale = upperRight - lowerLeft;
+            SelectArea();
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -44,21 +34,41 @@ public class GameController : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
         {
             BuildingManager.Instance.SetFlag();
-            Vector3 moveToPosition = UtilsClass.GetMouseWorldPosition();
-            List<Vector3> targetPositionList = GetPositionListAround(moveToPosition, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
-            int targetPositionListIndex = 0;
-
-            foreach (SoldierUnit soldierUnit in selectedUnitList)
-            {
-                soldierUnit.MoveTo(targetPositionList[targetPositionListIndex]);
-                targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
-            }
+            ControlUnits();
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             UIManager.Instance.UnSelectBuildingType();
         }
         BuildingManager.Instance.ShowGhost();
+    }
+
+    private void ControlUnits()
+    {
+        Vector3 moveToPosition = UtilsClass.GetMouseWorldPosition();
+        List<Vector3> targetPositionList = GetPositionListAround(moveToPosition, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
+        int targetPositionListIndex = 0;
+
+        foreach (SoldierUnit soldierUnit in selectedUnitList)
+        {
+            soldierUnit.MoveTo(targetPositionList[targetPositionListIndex]);
+            targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
+        }
+    }
+
+    private void SelectArea()
+    {
+        Vector3 currentMousePosition = UtilsClass.GetMouseWorldPosition();
+        Vector3 lowerLeft = new Vector3(
+            Mathf.Min(startPosition.x, currentMousePosition.x),
+            Mathf.Min(startPosition.y, currentMousePosition.y)
+        );
+        Vector3 upperRight = new Vector3(
+            Mathf.Max(startPosition.x, currentMousePosition.x),
+            Mathf.Max(startPosition.y, currentMousePosition.y)
+        );
+        selectionAreaTransform.position = lowerLeft;
+        selectionAreaTransform.localScale = upperRight - lowerLeft;
     }
 
     private List<Vector3> GetPositionListAround(Vector3 startPosition, float[] ringDistanceArray, int[] ringPositionCountArray)
@@ -94,7 +104,6 @@ public class GameController : MonoBehaviour
     private void SelectUnits()
     {
         selectionAreaTransform.gameObject.SetActive(false);
-
         Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, UtilsClass.GetMouseWorldPosition());
         foreach (SoldierUnit soldierUnit in selectedUnitList)
         {

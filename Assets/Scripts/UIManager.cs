@@ -18,10 +18,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI txtPowerPlantPrice;
     [SerializeField] private TextMeshProUGUI txtBarracksPrice;
     [Header("Information")]
-    [SerializeField] public GameObject imgbgInfo;
-    [SerializeField] public Image imgInfo;
-    [SerializeField] public GameObject UnitsArea;
-    [SerializeField] public TextMeshProUGUI txtBuildingName;
+    [SerializeField] private GameObject PanelBarracks;
+    [SerializeField] private GameObject PanelPowerPlant;
 
     public static UIManager Instance { get; private set; }
 
@@ -30,7 +28,6 @@ public class UIManager : MonoBehaviour
         Instance = this;
         LoadResources();
         SetButtons();
-        RefreshInfo();
     }
 
     private void SetButtons()
@@ -91,28 +88,15 @@ public class UIManager : MonoBehaviour
         BuildingManager.Instance.UnSelect();
     }
 
-    public void SelectBuilding(BuildingType buildingType)
+    public void SelectBarracks()
     {
-        RefreshInfo();
-        imgbgInfo.SetActive(true);
-        switch (buildingType)
-        {
-            case BuildingType.Barracks:
-                imgInfo.sprite = prefabs.BarracksSprite;
-                UnitsArea.SetActive(true);
-                txtBuildingName.text = buildingType.ToString();
-                break;
-            case BuildingType.PowerPlant:
-                imgInfo.sprite = prefabs.PowerPlantSprite;
-                txtBuildingName.text = buildingType.ToString();
-                break;
-        }
+        PanelPowerPlant.SetActive(false);
+        PanelBarracks.SetActive(true);
     }
 
-    private void RefreshInfo()
+    public void SelectPowerPlant()
     {
-        imgbgInfo.SetActive(false);
-        UnitsArea.SetActive(false);
-        txtBuildingName.text = "";
+        PanelBarracks.SetActive(false);
+        PanelPowerPlant.SetActive(true);
     }
 }

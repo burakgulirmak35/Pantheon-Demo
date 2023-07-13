@@ -15,9 +15,14 @@ public class UnitButton : MonoBehaviour
     [Space]
     [SerializeField] private TextMeshProUGUI txtHealth;
     [SerializeField] private TextMeshProUGUI txtPower;
+    [Space]
+    private Button btnTrainUnit;
 
     private void Awake()
     {
+        btnTrainUnit = GetComponent<Button>();
+        btnTrainUnit.onClick.AddListener(() => buyUnit());
+
         imgUnit.sprite = unitSO.unitSprite;
         txtPrice.text = "$" + unitSO.unitPrice.ToString();
         txtHealth.text = unitSO.unitHealth.ToString();
@@ -28,7 +33,9 @@ public class UnitButton : MonoBehaviour
     {
         if (UIManager.Instance.SpendResource(unitSO.unitPrice))
         {
-
+            BuildingManager.Instance.ChoosenBarraks.SpawnUnit(unitSO.unitType);
         }
     }
+
+
 }

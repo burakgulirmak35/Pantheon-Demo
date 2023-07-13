@@ -25,7 +25,7 @@ public class PowerPlant : MonoBehaviour
 
     private void OnMouseDown()
     {
-        UIManager.Instance.SelectBuilding(BuildingType.PowerPlant);
+        BuildingManager.Instance.SelectBuilding(this);
     }
 
     public void AddHealth(float amount)

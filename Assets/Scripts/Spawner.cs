@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolManager : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     [SerializeField] private SettingsSO settings;
     [SerializeField] private PrefabsSO prefabs;
-    public static PoolManager Instance { get; private set; }
+    public static Spawner Instance { get; private set; }
     //--------------------------------------
     private Transform uiPoolHolder;
     private Queue<GameObject> moneyUiPool = new Queue<GameObject>();
@@ -34,7 +34,7 @@ public class PoolManager : MonoBehaviour
     }
 
     //-------------------------------------------
-    public GameObject PoolGetRifleBullet()
+    public GameObject PoolGetBullet()
     {
         tempObject = rifleBulletPool.Dequeue();
         tempObject.SetActive(true);
