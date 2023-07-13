@@ -28,6 +28,9 @@ public class UIManager : MonoBehaviour
         Instance = this;
         LoadResources();
         SetButtons();
+
+        PanelBarracks.SetActive(false);
+        PanelPowerPlant.SetActive(false);
     }
 
     private void SetButtons()

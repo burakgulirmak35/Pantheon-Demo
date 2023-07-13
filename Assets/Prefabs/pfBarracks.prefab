@@ -744,6 +744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 81aff335d7840324a960b90d0e57960b, type: 2}
+  prefabs: {fileID: 11400000, guid: 283d164945d3e964894baa6c2dcb1729, type: 2}
   imgHealthBarFill: {fileID: 7926183157266682123}
   spawnPoint: {fileID: 2369618438563902894}
   flag: {fileID: 3256481928623039807}

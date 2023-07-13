@@ -17,11 +17,14 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButtonDown(0))
         {
-            BuildingManager.Instance.Build();
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                BuildingManager.Instance.Build();
+                selectionAreaTransform.gameObject.SetActive(true);
+            }
             startPosition = UtilsClass.GetMouseWorldPosition();
-            selectionAreaTransform.gameObject.SetActive(true);
         }
         if (Input.GetMouseButton(0))
         {

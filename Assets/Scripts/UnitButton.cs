@@ -33,7 +33,7 @@ public class UnitButton : MonoBehaviour
     {
         if (UIManager.Instance.SpendResource(unitSO.unitPrice))
         {
-            BuildingManager.Instance.ChoosenBarraks.SpawnUnit(unitSO.unitType);
+            BuildingManager.Instance.ChoosenBarraks.SpawnUnit(unitSO.unitID);
         }
     }
 

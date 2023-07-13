@@ -7,12 +7,14 @@ using DG.Tweening;
 public class Barracks : MonoBehaviour
 {
     [SerializeField] private SettingsSO settings;
+    [SerializeField] private PrefabsSO prefabs;
     [Space]
     [SerializeField] private Image imgHealthBarFill;
     [Space]
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform flag;
     private float health;
+    private SoldierUnit soldierUnit;
 
     private void Start()
     {
@@ -53,8 +55,9 @@ public class Barracks : MonoBehaviour
         DOTween.To(() => imgHealthBarFill.fillAmount, x => imgHealthBarFill.fillAmount = x, health / settings.BarracksHealth, 0.25f).SetEase(Ease.Linear);
     }
 
-    public void SpawnUnit(UnitType unitType)
+    public void SpawnUnit(int _unitID)
     {
-
+        soldierUnit = Instantiate(prefabs.Soldiers[_unitID], spawnPoint.position, Quaternion.identity).GetComponent<SoldierUnit>();
+        soldierUnit.MoveTo(flag.position);
     }
 }

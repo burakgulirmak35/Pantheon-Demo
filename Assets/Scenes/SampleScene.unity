@@ -635,7 +635,7 @@ MonoBehaviour:
   txtPowerPlantPrice: {fileID: 934920215}
   txtBarracksPrice: {fileID: 356769728}
   PanelBarracks: {fileID: 1834753497}
-  PanelPowerPlant: {fileID: 0}
+  PanelPowerPlant: {fileID: 1706601239}
 --- !u!1001 &353986280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5044,6 +5044,7 @@ MonoBehaviour:
   prefabs: {fileID: 11400000, guid: 283d164945d3e964894baa6c2dcb1729, type: 2}
   GhostObject: {fileID: 725478279}
   BuildingHolder: {fileID: 35786059}
+  ChoosenBarraks: {fileID: 0}
 --- !u!1 &1858752538
 GameObject:
   m_ObjectHideFlags: 0
@@ -5254,7 +5255,7 @@ GameObject:
   - component: {fileID: 1973101905}
   - component: {fileID: 1973101906}
   m_Layer: 0
-  m_Name: PoolManager
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5286,7 +5287,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1973101904}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c91fa4bff14493146b9520e3e862cacb, type: 3}
+  m_Script: {fileID: 11500000, guid: 1235f9677e483a14b97ca1be105c4755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 81aff335d7840324a960b90d0e57960b, type: 2}

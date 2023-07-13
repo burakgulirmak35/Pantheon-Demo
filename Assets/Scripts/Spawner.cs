@@ -23,6 +23,8 @@ public class Spawner : MonoBehaviour
         Instance = this;
     }
 
+
+
     private void GeneratePool(GameObject prefab, int count, Queue<GameObject> pool, Transform holder)
     {
         for (int i = 0; i < count; i++)
@@ -41,4 +43,5 @@ public class Spawner : MonoBehaviour
         rifleBulletPool.Enqueue(tempObject);
         return tempObject;
     }
+
 }
