@@ -15,5 +15,7 @@ MonoBehaviour:
   PowerPlantBuildPrice: 5
   PowerPlantProductAmount: 1
   PowerPlantBuildTime: 1
-  PowerPlantProductTime: 5
+  PowerPlantProductTime: 0.5
+  PowerPlantHealth: 100
   BarracksBuildPrice: 5
+  BarracksHealth: 100

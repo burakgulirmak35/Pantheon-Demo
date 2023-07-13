@@ -9,36 +9,37 @@ public class BuildingManager : MonoBehaviour
     [Space]
     [SerializeField] private GameObject GhostObject;
     private Transform building;
-
     [Header("Holders")]
     [SerializeField] private Transform BuildingHolder;
-
-
     public static BuildingManager Instance { get; private set; }
+    private Barracks ChoosenBarraks;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    private void Update()
+    public void Build()
     {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (building != null)
         {
-            if (building != null)
+            if (CanSpawnBuilding(building, UtilsClass.GetMouseWorldPosition()))
             {
-                if (CanSpawnBuilding(building, UtilsClass.GetMouseWorldPosition()))
-                {
-                    Instantiate(building, UtilsClass.GetMouseWorldPosition(), Quaternion.identity, BuildingHolder);
-                }
+                Instantiate(building, UtilsClass.GetMouseWorldPosition(), Quaternion.identity, BuildingHolder);
             }
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+    public void SetFlag()
+    {
+        if (ChoosenBarraks != null)
         {
-            UIManager.Instance.UnSelectBuildingType();
+            ChoosenBarraks.SetFlag(UtilsClass.GetMouseWorldPosition());
         }
+    }
 
+    public void ShowGhost()
+    {
         if (building != null)
         {
             GhostObject.transform.position = UtilsClass.GetMouseWorldPosition();
@@ -72,4 +73,22 @@ public class BuildingManager : MonoBehaviour
         return collider2DArray.Length == 0;
     }
 
+    public void SetBarracks(Barracks _barracks)
+    {
+        UnSelectBarracks();
+        ChoosenBarraks = _barracks;
+    }
+
+    private void UnSelectBarracks()
+    {
+        if (ChoosenBarraks != null)
+        {
+            ChoosenBarraks.UnSelect();
+        }
+    }
+}
+
+public enum BuildingType
+{
+    Barracks, PowerPlant
 }

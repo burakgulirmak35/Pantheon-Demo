@@ -8,9 +8,8 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private PrefabsSO prefabs;
     [SerializeField] private SettingsSO settings;
-    [Header("Text")]
+    [Header("Resources")]
     [SerializeField] private TextMeshProUGUI txtPower;
-    [Space]
     private int ResourceAmount;
     [Header("Buttons")]
     [SerializeField] private Image imgPowerPlantSelected;
@@ -18,6 +17,11 @@ public class UIManager : MonoBehaviour
     [Space]
     [SerializeField] private TextMeshProUGUI txtPowerPlantPrice;
     [SerializeField] private TextMeshProUGUI txtBarracksPrice;
+    [Header("Information")]
+    [SerializeField] public GameObject imgbgInfo;
+    [SerializeField] public Image imgInfo;
+    [SerializeField] public GameObject UnitsArea;
+    [SerializeField] public TextMeshProUGUI txtBuildingName;
 
     public static UIManager Instance { get; private set; }
 
@@ -26,6 +30,7 @@ public class UIManager : MonoBehaviour
         Instance = this;
         LoadResources();
         SetButtons();
+        RefreshInfo();
     }
 
     private void SetButtons()
@@ -39,6 +44,18 @@ public class UIManager : MonoBehaviour
         ResourceAmount += amount;
         txtPower.text = ResourceAmount.ToString();
         PlayerPrefs.SetInt("ResourceAmount", ResourceAmount);
+    }
+
+    public bool SpendResource(int amount)
+    {
+        if (ResourceAmount >= amount)
+        {
+            ResourceAmount -= amount;
+            txtPower.text = ResourceAmount.ToString();
+            PlayerPrefs.SetInt("ResourceAmount", ResourceAmount);
+            return true;
+        }
+        return false;
     }
 
     private void LoadResources()
@@ -72,5 +89,30 @@ public class UIManager : MonoBehaviour
         imgPowerPlantSelected.enabled = false;
         imgBarracksSelected.enabled = false;
         BuildingManager.Instance.UnSelect();
+    }
+
+    public void SelectBuilding(BuildingType buildingType)
+    {
+        RefreshInfo();
+        imgbgInfo.SetActive(true);
+        switch (buildingType)
+        {
+            case BuildingType.Barracks:
+                imgInfo.sprite = prefabs.BarracksSprite;
+                UnitsArea.SetActive(true);
+                txtBuildingName.text = buildingType.ToString();
+                break;
+            case BuildingType.PowerPlant:
+                imgInfo.sprite = prefabs.PowerPlantSprite;
+                txtBuildingName.text = buildingType.ToString();
+                break;
+        }
+    }
+
+    private void RefreshInfo()
+    {
+        imgbgInfo.SetActive(false);
+        UnitsArea.SetActive(false);
+        txtBuildingName.text = "";
     }
 }
