@@ -9,4 +9,5 @@ public class UnitSO : ScriptableObject
     public int unitPrice;
     public int unitHealth;
     public int unitPower;
+    public int fireRate;
 }

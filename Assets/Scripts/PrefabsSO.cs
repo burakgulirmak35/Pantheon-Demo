@@ -12,4 +12,6 @@ public class PrefabsSO : ScriptableObject
     public Sprite BarracksSprite;
     [Space]
     public Transform[] Soldiers;
+    [Space]
+    public GameObject pfBullet;
 }

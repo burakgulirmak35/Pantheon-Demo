@@ -12,6 +12,7 @@ public class SoldierUnit : MonoBehaviour
     [SerializeField] private Image imgHealthBarFill;
     [Space]
     private float health;
+    private float fireRate;
     private int unitPower;
     [Space]
     private GameObject selectedGameObject;
@@ -26,6 +27,7 @@ public class SoldierUnit : MonoBehaviour
         selectedGameObject = transform.Find("Selected").gameObject;
         health = unitSO.unitHealth;
         unitPower = unitSO.unitPower;
+        fireRate = unitSO.fireRate;
     }
 
     public void SetSelectedVisible(bool visible)

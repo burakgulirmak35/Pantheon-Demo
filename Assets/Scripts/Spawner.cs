@@ -8,12 +8,9 @@ public class Spawner : MonoBehaviour
     [SerializeField] private PrefabsSO prefabs;
     public static Spawner Instance { get; private set; }
     //--------------------------------------
-    private Transform uiPoolHolder;
-    private Queue<GameObject> moneyUiPool = new Queue<GameObject>();
-    private Queue<GameObject> damageUiPool = new Queue<GameObject>();
-    //--------------------------------------
     [SerializeField] private Transform bulletPoolHolder;
-    private Queue<GameObject> rifleBulletPool = new Queue<GameObject>();
+    [SerializeField] private int bulletPoolCount;
+    private Queue<GameObject> BulletPool = new Queue<GameObject>();
     //--------------------------------------
     private GameObject tempObject;
     //--------------------------------------
@@ -25,22 +22,22 @@ public class Spawner : MonoBehaviour
 
 
 
-    private void GeneratePool(GameObject prefab, int count, Queue<GameObject> pool, Transform holder)
+    private void GenerateBulletPool()
     {
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < bulletPoolCount; i++)
         {
-            tempObject = Instantiate(prefab, holder);
+            tempObject = Instantiate(prefabs.pfBullet, bulletPoolHolder);
             tempObject.SetActive(false);
-            pool.Enqueue(tempObject);
+            BulletPool.Enqueue(tempObject);
         }
     }
 
     //-------------------------------------------
     public GameObject PoolGetBullet()
     {
-        tempObject = rifleBulletPool.Dequeue();
+        tempObject = BulletPool.Dequeue();
         tempObject.SetActive(true);
-        rifleBulletPool.Enqueue(tempObject);
+        BulletPool.Enqueue(tempObject);
         return tempObject;
     }
 
