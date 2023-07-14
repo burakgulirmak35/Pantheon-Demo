@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private GameObject hitEffect;
+
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        
+        //hitEffect = Spawner.Instance.GetHitEffect();
+        //hitEffect.transform.position = transform.position;
+        //hitEffect.SetActive(true);
+        this.gameObject.SetActive(false);
+        if (DissaperCoro != null)
+        {
+            StopCoroutine(DissaperCoro);
+            GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ResetBullet()
     {
-        
+        if (DissaperCoro != null)
+        {
+            StopCoroutine(DissaperCoro);
+        }
+        DissaperCoro = StartCoroutine(DissapearTimer());
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+    }
+
+    private Coroutine DissaperCoro;
+    private IEnumerator DissapearTimer()
+    {
+        yield return new WaitForSeconds(2f);
+        this.gameObject.SetActive(false);
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
     }
 }

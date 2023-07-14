@@ -14,4 +14,5 @@ public class PrefabsSO : ScriptableObject
     public Transform[] Soldiers;
     [Space]
     public GameObject pfBullet;
+    public GameObject pfHitEffect;
 }

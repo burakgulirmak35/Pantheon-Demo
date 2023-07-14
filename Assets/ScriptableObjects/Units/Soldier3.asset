@@ -18,3 +18,4 @@ MonoBehaviour:
   unitPrice: 0
   unitHealth: 5
   unitPower: 5
+  fireRate: 1

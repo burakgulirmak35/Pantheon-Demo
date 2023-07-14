@@ -12,12 +12,17 @@ public class Spawner : MonoBehaviour
     [SerializeField] private int bulletPoolCount;
     private Queue<GameObject> BulletPool = new Queue<GameObject>();
     //--------------------------------------
+    [SerializeField] private Transform hitEffect;
+    [SerializeField] private int hitEffectPoolCount;
+    private Queue<GameObject> hitEffectPool = new Queue<GameObject>();
+    //--------------------------------------
     private GameObject tempObject;
     //--------------------------------------
 
     private void Awake()
     {
         Instance = this;
+        GenerateBulletPool();
     }
 
 
@@ -32,12 +37,31 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    private void GenerateHitEffect()
+    {
+        for (int i = 0; i < hitEffectPoolCount; i++)
+        {
+            tempObject = Instantiate(prefabs.pfHitEffect, bulletPoolHolder);
+            tempObject.SetActive(false);
+            hitEffectPool.Enqueue(tempObject);
+        }
+    }
+
     //-------------------------------------------
-    public GameObject PoolGetBullet()
+    public GameObject GetBullet()
     {
         tempObject = BulletPool.Dequeue();
         tempObject.SetActive(true);
+        tempObject.GetComponent<Bullet>().ResetBullet();
         BulletPool.Enqueue(tempObject);
+        return tempObject;
+    }
+
+    public GameObject GetHitEffect()
+    {
+        tempObject = hitEffectPool.Dequeue();
+        tempObject.SetActive(true);
+        hitEffectPool.Enqueue(tempObject);
         return tempObject;
     }
 

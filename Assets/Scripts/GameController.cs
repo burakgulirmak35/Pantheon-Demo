@@ -48,13 +48,25 @@ public class GameController : MonoBehaviour
     private void ControlUnits()
     {
         Vector3 moveToPosition = UtilsClass.GetMouseWorldPosition();
-        List<Vector3> targetPositionList = GetPositionListAround(moveToPosition, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
-        int targetPositionListIndex = 0;
 
-        foreach (SoldierUnit soldierUnit in selectedUnitList)
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        if (hit.collider != null && hit.collider.tag.Equals("Enemy"))
         {
-            soldierUnit.MoveTo(targetPositionList[targetPositionListIndex]);
-            targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
+            foreach (SoldierUnit soldierUnit in selectedUnitList)
+            {
+                soldierUnit.Fire(hit.transform);
+            }
+        }
+        else
+        {
+            List<Vector3> targetPositionList = GetPositionListAround(moveToPosition, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
+            int targetPositionListIndex = 0;
+
+            foreach (SoldierUnit soldierUnit in selectedUnitList)
+            {
+                soldierUnit.MoveTo(targetPositionList[targetPositionListIndex]);
+                targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
+            }
         }
     }
 
@@ -115,7 +127,7 @@ public class GameController : MonoBehaviour
         foreach (Collider2D collider2D in collider2DArray)
         {
             SoldierUnit soldierUnit = collider2D.GetComponent<SoldierUnit>();
-            if (soldierUnit != null)
+            if (soldierUnit != null && !soldierUnit.tag.Equals("Enemy"))
             {
                 soldierUnit.SetSelectedVisible(true);
                 selectedUnitList.Add(soldierUnit);

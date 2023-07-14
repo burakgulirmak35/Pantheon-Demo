@@ -10,10 +10,13 @@ public class SoldierUnit : MonoBehaviour
     [SerializeField] private UnitSO unitSO;
     [Space]
     [SerializeField] private Image imgHealthBarFill;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private Transform body;
     [Space]
     private float health;
     private float fireRate;
     private int unitPower;
+    private float bulletForce = 20f;
     [Space]
     private GameObject selectedGameObject;
     private NavMeshAgent agent;
@@ -28,6 +31,8 @@ public class SoldierUnit : MonoBehaviour
         health = unitSO.unitHealth;
         unitPower = unitSO.unitPower;
         fireRate = unitSO.fireRate;
+
+        imgHealthBarFill.fillAmount = 1;
     }
 
     public void SetSelectedVisible(bool visible)
@@ -40,9 +45,46 @@ public class SoldierUnit : MonoBehaviour
         agent.SetDestination(targetPosition);
     }
 
-    public void Fire()
+    Vector2 lookDir;
+    float angle;
+    public void Fire(Transform _target)
     {
+        target = _target;
+        StartCoroutine(FireCorotine());
+    }
 
+    private void Update()
+    {
+        if (target != null)
+        {
+            Vector2 direction = target.position - body.position;
+            body.rotation = Quaternion.FromToRotation(Vector3.up, direction);
+        }
+    }
+
+    private Transform target;
+    private bool isFire;
+    private IEnumerator FireCorotine()
+    {
+        if (!isFire)
+        {
+            isFire = true;
+            while (target != null)
+            {
+                Shoot();
+                yield return new WaitForSeconds(1 / fireRate);
+            }
+        }
+    }
+
+    private GameObject bullet;
+    private Rigidbody2D bulletrb;
+    private void Shoot()
+    {
+        bullet = Spawner.Instance.GetBullet();
+        bullet.transform.position = transform.position;
+        bulletrb = bullet.GetComponent<Rigidbody2D>();
+        bulletrb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
     }
 
     public void AddHealth(float amount)
