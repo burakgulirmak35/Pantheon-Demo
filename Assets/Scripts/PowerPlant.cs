@@ -39,7 +39,7 @@ public class PowerPlant : MonoBehaviour
         {
             health = 0;
         }
-        DOTween.To(() => imgHealthBarFill.fillAmount, x => imgHealthBarFill.fillAmount = x, health / settings.PowerPlantHealth, 0.25f).SetEase(Ease.Linear);
+        DOTween.To(() => imgHealthBarFill.fillAmount, x => imgHealthBarFill.fillAmount = x, health / settings.PowerPlantHealth, 0.2f).SetEase(Ease.Linear);
     }
 
     private IEnumerator GenerateResourceCoro()

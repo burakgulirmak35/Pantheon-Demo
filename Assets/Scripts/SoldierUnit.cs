@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class SoldierUnit : MonoBehaviour
 {
     [SerializeField] private UnitSO unitSO;
     [Space]
-    private int unitHealth;
+    [SerializeField] private Image imgHealthBarFill;
+    [Space]
+    private float health;
     private int unitPower;
     [Space]
     private GameObject selectedGameObject;
@@ -20,7 +24,7 @@ public class SoldierUnit : MonoBehaviour
         agent.updateUpAxis = false;
 
         selectedGameObject = transform.Find("Selected").gameObject;
-        unitHealth = unitSO.unitHealth;
+        health = unitSO.unitHealth;
         unitPower = unitSO.unitPower;
     }
 
@@ -33,5 +37,25 @@ public class SoldierUnit : MonoBehaviour
     {
         agent.SetDestination(targetPosition);
     }
+
+    public void Fire()
+    {
+
+    }
+
+    public void AddHealth(float amount)
+    {
+        health += amount;
+        if (health >= unitSO.unitHealth)
+        {
+            health = unitSO.unitHealth;
+        }
+        else if (health <= 0)
+        {
+            health = 0;
+        }
+        DOTween.To(() => imgHealthBarFill.fillAmount, x => imgHealthBarFill.fillAmount = x, health / unitSO.unitHealth, 0.2f).SetEase(Ease.Linear);
+    }
+
 
 }
