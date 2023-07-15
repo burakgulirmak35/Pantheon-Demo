@@ -69,12 +69,19 @@ public class SoldierUnit : MonoBehaviour
         if (!isFire)
         {
             isFire = true;
-            while (target != null)
+            while (target != null && target.gameObject.activeSelf)
             {
-                Shoot();
                 yield return new WaitForSeconds(1 / fireRate);
+                Shoot();
             }
+            StopFire();
         }
+    }
+
+    private void StopFire()
+    {
+        isFire = false;
+        target = null;
     }
 
     private GameObject bullet;

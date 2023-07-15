@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
         //hitEffect = Spawner.Instance.GetHitEffect();
         //hitEffect.transform.position = transform.position;
         //hitEffect.SetActive(true);
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
         if (DissaperCoro != null)
         {
             StopCoroutine(DissaperCoro);
