@@ -21,7 +21,7 @@ public class SoldierUnit : MonoBehaviour
     private float healthAmount;
     private float fireRate;
     private int unitPower;
-    private float bulletForce = 20f;
+    private float bulletForce = 10f;
     [Space]
     private GameObject selectedGameObject;
 

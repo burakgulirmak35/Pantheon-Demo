@@ -127,7 +127,7 @@ public class GameController : MonoBehaviour
         foreach (Collider2D collider2D in collider2DArray)
         {
             SoldierUnit soldierUnit = collider2D.GetComponent<SoldierUnit>();
-            if (soldierUnit != null && !soldierUnit.tag.Equals("Enemy"))
+            if (soldierUnit != null && !soldierUnit.tag.Equals("Enemy") && selectedUnitList.Count < 30)
             {
                 UIManager.Instance.SelectUnits();
                 selectedUnitList.Add(soldierUnit);
