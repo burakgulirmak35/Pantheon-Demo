@@ -13,6 +13,10 @@ public class SoldierUnit : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private Transform body;
     [Space]
+    private const float speed = 40f;
+    private int currentPathIndex;
+    private List<Vector3> pathVectorList;
+    [Space]
     private float health;
     private float healthAmount;
     private float fireRate;
@@ -20,14 +24,9 @@ public class SoldierUnit : MonoBehaviour
     private float bulletForce = 20f;
     [Space]
     private GameObject selectedGameObject;
-    private NavMeshAgent agent;
 
     private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-
         selectedGameObject = transform.Find("Selected").gameObject;
         health = unitSO.unitHealth;
         unitPower = unitSO.unitPower;
@@ -54,7 +53,13 @@ public class SoldierUnit : MonoBehaviour
 
     public void MoveTo(Vector3 targetPosition)
     {
-        agent.SetDestination(targetPosition);
+        currentPathIndex = 0;
+        pathVectorList = Pathfinding.Instance.FindPath(transform.position, targetPosition);
+
+        if (pathVectorList != null && pathVectorList.Count > 1)
+        {
+            pathVectorList.RemoveAt(0);
+        }
     }
 
     Vector2 lookDir;
@@ -71,6 +76,30 @@ public class SoldierUnit : MonoBehaviour
         {
             Vector2 direction = target.position - body.position;
             body.rotation = Quaternion.FromToRotation(Vector3.up, direction);
+        }
+        HandleMovement();
+    }
+
+    private void HandleMovement()
+    {
+        if (pathVectorList != null)
+        {
+            Vector3 targetPosition = pathVectorList[currentPathIndex];
+            if (Vector3.Distance(transform.position, targetPosition) > 1f)
+            {
+                Vector3 moveDir = (targetPosition - transform.position).normalized;
+
+                float distanceBefore = Vector3.Distance(transform.position, targetPosition);
+                transform.position = transform.position + moveDir * speed * Time.deltaTime;
+            }
+            else
+            {
+                currentPathIndex++;
+                if (currentPathIndex >= pathVectorList.Count)
+                {
+                    pathVectorList = null;
+                }
+            }
         }
     }
 

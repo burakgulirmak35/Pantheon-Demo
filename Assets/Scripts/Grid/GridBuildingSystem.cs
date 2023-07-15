@@ -13,6 +13,7 @@ public class GridBuildingSystem : MonoBehaviour
     [SerializeField] private GameObject BarracksGhost;
     [SerializeField] private GameObject PowerPlantGhost;
     private GameObject Ghost;
+    private Pathfinding pathfinding;
 
     private Grid<GridObject> grid;
     private void Awake()
@@ -24,7 +25,8 @@ public class GridBuildingSystem : MonoBehaviour
         float cellSize = 1f;
 
         Instance = this;
-        grid = new Grid<GridObject>(gridWidth, gridHeight, cellSize, new Vector3(-(gridWidth * cellSize) / 2, -(gridHeight * cellSize) / 2, 0), (Grid<GridObject> g, int x, int y) => new GridObject(g, x, y));
+        grid = new Grid<GridObject>(gridWidth, gridHeight, cellSize, Vector3.zero, (Grid<GridObject> g, int x, int y) => new GridObject(g, x, y));
+        pathfinding = new Pathfinding(gridWidth, gridHeight, cellSize);
     }
 
     public void Build()
