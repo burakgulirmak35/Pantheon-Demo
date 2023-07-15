@@ -41,7 +41,7 @@ public class GridBuildingSystem : MonoBehaviour
             bool canBuild = true;
             foreach (Vector2Int gridPosition in gridPositionList)
             {
-                if (!grid.GetGridObject(gridPosition.x, gridPosition.y).CanBuild())
+                if (!grid.isValid(gridPosition.x, gridPosition.y) || !grid.GetGridObject(gridPosition.x, gridPosition.y).CanBuild())
                 {
                     canBuild = false;
                     break;

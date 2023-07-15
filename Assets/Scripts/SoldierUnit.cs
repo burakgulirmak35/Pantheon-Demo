@@ -54,13 +54,15 @@ public class SoldierUnit : MonoBehaviour
     public void MoveTo(Vector3 targetPosition)
     {
         currentPathIndex = 0;
-        pathVectorList = Pathfinding.Instance.FindPath(transform.position, targetPosition);
+        pathVectorList = Pathfinding.Instance.FindPath((Vector3)transform.position, targetPosition);
 
         if (pathVectorList != null && pathVectorList.Count > 1)
         {
             pathVectorList.RemoveAt(0);
         }
     }
+
+
 
     Vector2 lookDir;
     float angle;
@@ -85,7 +87,7 @@ public class SoldierUnit : MonoBehaviour
         if (pathVectorList != null)
         {
             Vector3 targetPosition = pathVectorList[currentPathIndex];
-            if (Vector3.Distance(transform.position, targetPosition) > 1f)
+            if (Vector3.Distance(transform.position, targetPosition) > 0.2f)
             {
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
 

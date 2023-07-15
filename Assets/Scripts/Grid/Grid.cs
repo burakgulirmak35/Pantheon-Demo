@@ -111,6 +111,18 @@ public class Grid<TGridObject>
         }
     }
 
+    public bool isValid(int x, int y)
+    {
+        if (x >= 0 && y >= 0 && x < width && y < height)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public TGridObject GetGridObject(Vector3 worldPosition)
     {
         int x, y;
