@@ -20,6 +20,10 @@ public class UIManager : MonoBehaviour
     [Header("Information")]
     [SerializeField] private GameObject PanelBarracks;
     [SerializeField] private GameObject PanelPowerPlant;
+    [SerializeField] private GameObject PanelSelectedUnits;
+    [Header("SelectedUnits")]
+    [SerializeField] private TextMeshProUGUI txtSelectedCount;
+    [SerializeField] private List<SelectedUnitUI> SelectedUnitList = new List<SelectedUnitUI>();
 
     public static UIManager Instance { get; private set; }
 
@@ -31,6 +35,7 @@ public class UIManager : MonoBehaviour
 
         PanelBarracks.SetActive(false);
         PanelPowerPlant.SetActive(false);
+        PanelSelectedUnits.SetActive(false);
     }
 
     private void SetButtons()
@@ -88,18 +93,32 @@ public class UIManager : MonoBehaviour
     {
         imgPowerPlantSelected.enabled = false;
         imgBarracksSelected.enabled = false;
-        GridBuildingSystem.Instance.UnSelect();
     }
 
     public void SelectBarracks()
     {
         PanelPowerPlant.SetActive(false);
         PanelBarracks.SetActive(true);
+        PanelSelectedUnits.SetActive(false);
     }
 
     public void SelectPowerPlant()
     {
         PanelBarracks.SetActive(false);
         PanelPowerPlant.SetActive(true);
+        PanelSelectedUnits.SetActive(false);
+    }
+
+    public void SelectUnits()
+    {
+        PanelBarracks.SetActive(false);
+        PanelPowerPlant.SetActive(false);
+        PanelSelectedUnits.SetActive(true);
+    }
+
+    public SelectedUnitUI SelectUnit(int id)
+    {
+        txtSelectedCount.text = id.ToString();
+        return SelectedUnitList[id - 1];
     }
 }

@@ -14,6 +14,7 @@ public class SoldierUnit : MonoBehaviour
     [SerializeField] private Transform body;
     [Space]
     private float health;
+    private float healthAmount;
     private float fireRate;
     private int unitPower;
     private float bulletForce = 20f;
@@ -33,11 +34,22 @@ public class SoldierUnit : MonoBehaviour
         fireRate = unitSO.fireRate;
 
         imgHealthBarFill.fillAmount = 1;
+        healthAmount = 1;
     }
 
-    public void SetSelectedVisible(bool visible)
+    private SelectedUnitUI selectedUnitUI;
+    public void UnSelect()
     {
-        selectedGameObject.SetActive(visible);
+        selectedUnitUI.gameObject.SetActive(false);
+        selectedUnitUI = null;
+        selectedGameObject.SetActive(false);
+    }
+    public void Select(SelectedUnitUI _selectedUnitUI)
+    {
+        selectedUnitUI = _selectedUnitUI;
+        selectedUnitUI.gameObject.SetActive(true);
+        selectedGameObject.SetActive(true);
+        _selectedUnitUI.SelectUnit(unitSO.unitSprite, healthAmount);
     }
 
     public void MoveTo(Vector3 targetPosition)
@@ -105,7 +117,12 @@ public class SoldierUnit : MonoBehaviour
         {
             health = 0;
         }
-        DOTween.To(() => imgHealthBarFill.fillAmount, x => imgHealthBarFill.fillAmount = x, health / unitSO.unitHealth, 0.2f).SetEase(Ease.Linear);
+        healthAmount = health / unitSO.unitHealth;
+        DOTween.To(() => imgHealthBarFill.fillAmount, x => imgHealthBarFill.fillAmount = x, healthAmount, 0.2f).SetEase(Ease.Linear);
+        if (selectedUnitUI != null)
+        {
+            selectedUnitUI.UpdateHealth(healthAmount);
+        }
     }
 
 

@@ -12,7 +12,6 @@ public class PowerPlant : MonoBehaviour
     [SerializeField] private Image imgHealthBarFill;
     private float health;
 
-
     private void Start()
     {
         UIManager.Instance.SpendResource(settings.PowerPlantBuildPrice);

@@ -6,17 +6,19 @@ public class GridBuildingSystem : MonoBehaviour
 {
     [SerializeField] private PrefabsSO prefabs;
     [SerializeField] private Transform BuildingHolder;
-    [SerializeField] PlacedObjectTypeSO placedObjectTypeSO;
+    PlacedObjectTypeSO placedObjectTypeSO;
     public static GridBuildingSystem Instance { get; private set; }
     [HideInInspector] public Barracks ChoosenBarraks;
     [Space]
     [SerializeField] private GameObject BarracksGhost;
     [SerializeField] private GameObject PowerPlantGhost;
-    [SerializeField] private GameObject Ghost;
+    private GameObject Ghost;
 
     private Grid<GridObject> grid;
     private void Awake()
     {
+        Ghost = BarracksGhost;
+
         int gridWidth = 40;
         int gridHeight = 40;
         float cellSize = 1f;
@@ -50,20 +52,28 @@ public class GridBuildingSystem : MonoBehaviour
                 {
                     grid.GetGridObject(gridPosition.x, gridPosition.y).SetTransform(buildTransform);
                 }
+                CancelBuilding();
             }
             else
             {
                 Spawner.Instance.CreateWorldTextPopup("Cannot build here!", UtilsClass.GetMouseWorldPosition());
             }
-
         }
+    }
+
+    public void CancelBuilding()
+    {
+        Ghost.SetActive(false);
+        placedObjectTypeSO = null;
+        UIManager.Instance.UnSelectBuildingType();
     }
 
     public void ShowGhost()
     {
         if (placedObjectTypeSO != null)
         {
-            Ghost.transform.position = UtilsClass.GetMouseWorldPosition();
+            grid.GetXY(UtilsClass.GetMouseWorldPosition(), out int x, out int z);
+            Ghost.transform.position = grid.GetWorldPosition(x, z);
         }
     }
 
@@ -81,11 +91,7 @@ public class GridBuildingSystem : MonoBehaviour
                 Ghost = PowerPlantGhost;
                 break;
         }
-    }
-
-    public void UnSelect()
-    {
-        placedObjectTypeSO = null;
+        Ghost.SetActive(true);
     }
 
     public void SelectBuilding(PowerPlant powerPlant)

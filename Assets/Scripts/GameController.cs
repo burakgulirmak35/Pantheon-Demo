@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
         {
             ControlUnits();
+            GridBuildingSystem.Instance.CancelBuilding();
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -114,23 +115,23 @@ public class GameController : MonoBehaviour
         return Quaternion.Euler(0, 0, angle) * vec;
     }
 
-
     private void SelectUnits()
     {
         selectionAreaTransform.gameObject.SetActive(false);
         Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, UtilsClass.GetMouseWorldPosition());
         foreach (SoldierUnit soldierUnit in selectedUnitList)
         {
-            soldierUnit.SetSelectedVisible(false);
+            soldierUnit.UnSelect();
         }
-        selectedUnitList.Clear();
+        selectedUnitList.Clear(); ;
         foreach (Collider2D collider2D in collider2DArray)
         {
             SoldierUnit soldierUnit = collider2D.GetComponent<SoldierUnit>();
             if (soldierUnit != null && !soldierUnit.tag.Equals("Enemy"))
             {
-                soldierUnit.SetSelectedVisible(true);
+                UIManager.Instance.SelectUnits();
                 selectedUnitList.Add(soldierUnit);
+                soldierUnit.Select(UIManager.Instance.SelectUnit(selectedUnitList.Count));
             }
         }
     }
