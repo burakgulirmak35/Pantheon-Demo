@@ -52,6 +52,7 @@ public class GridBuildingSystem : MonoBehaviour
                 Transform buildTransform = Instantiate(placedObjectTypeSO.prefab, grid.GetWorldPosition(x, z), Quaternion.identity, BuildingHolder);
                 foreach (Vector2Int gridPosition in gridPositionList)
                 {
+                    pathfinding.GetNode(gridPosition.x, gridPosition.y).SetIsWalkable(!pathfinding.GetNode(gridPosition.x, gridPosition.y).isWalkable);
                     grid.GetGridObject(gridPosition.x, gridPosition.y).SetTransform(buildTransform);
                 }
                 CancelBuilding();
