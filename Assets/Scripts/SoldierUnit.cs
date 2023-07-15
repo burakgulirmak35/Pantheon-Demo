@@ -13,7 +13,7 @@ public class SoldierUnit : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private Transform body;
     [Space]
-    private const float speed = 40f;
+    private const float speed = 20f;
     private int currentPathIndex;
     private List<Vector3> pathVectorList;
     [Space]
