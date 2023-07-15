@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d889b5890a2be2419c4e232addc3b0e, type: 3}
   m_Name: Prefabs
   m_EditorClassIdentifier: 
-  PowerPlant: {fileID: 4782235985580720507, guid: a5dcd02249c17174685b6147459d3651, type: 3}
-  Barracks: {fileID: 4782235985580720507, guid: 091bd0f9854ba8e4bbddceb3888b3281, type: 3}
-  Base: {fileID: 4782235985580720507, guid: 37f232e29414be74ea1acc5189ee2f7c, type: 3}
-  PowerPlantSprite: {fileID: 0}
-  BarracksSprite: {fileID: 0}
+  PowerPlant: {fileID: 11400000, guid: 20d2e3ce0a56e4b46a7ea3c736891d6d, type: 2}
+  Barracks: {fileID: 11400000, guid: c25b38b018769c5449929a84e48f691f, type: 2}
+  Base: {fileID: 11400000, guid: 9cab3b17e88dd8f43b1ad3dbbf9c1e38, type: 2}
   Soldiers:
   - {fileID: 2332573258020241553, guid: f38ac680828007748977e0c410a249f2, type: 3}
   - {fileID: 2332573258020241553, guid: ea1e9883a92d81348bddfa8ff8bac0c6, type: 3}

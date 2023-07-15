@@ -5,11 +5,14 @@ using UnityEngine;
 public class GridBuildingSystem : MonoBehaviour
 {
     [SerializeField] private PrefabsSO prefabs;
-    [SerializeField] private GameObject GhostObject;
     [SerializeField] private Transform BuildingHolder;
-    [SerializeField] Transform building;
+    [SerializeField] PlacedObjectTypeSO placedObjectTypeSO;
     public static GridBuildingSystem Instance { get; private set; }
     [HideInInspector] public Barracks ChoosenBarraks;
+    [Space]
+    [SerializeField] private GameObject BarracksGhost;
+    [SerializeField] private GameObject PowerPlantGhost;
+    [SerializeField] private GameObject Ghost;
 
     private Grid<GridObject> grid;
     private void Awake()
@@ -24,15 +27,29 @@ public class GridBuildingSystem : MonoBehaviour
 
     public void Build()
     {
-        if (building != null)
+        if (placedObjectTypeSO != null)
         {
             grid.GetXY(UtilsClass.GetMouseWorldPosition(), out int x, out int z);
 
             GridObject gridObject = grid.GetGridObject(x, z);
-            if (gridObject.CanBuild())
+            List<Vector2Int> gridPositionList = placedObjectTypeSO.GetGridPositionList(new Vector2Int(x, z));
+
+            bool canBuild = true;
+            foreach (Vector2Int gridPosition in gridPositionList)
             {
-                Transform buildTransform = Instantiate(building, grid.GetWorldPosition(x, z), Quaternion.identity, BuildingHolder);
-                gridObject.SetTransform(buildTransform);
+                if (!grid.GetGridObject(gridPosition.x, gridPosition.y).CanBuild())
+                {
+                    canBuild = false;
+                    break;
+                }
+            }
+            if (canBuild)
+            {
+                Transform buildTransform = Instantiate(placedObjectTypeSO.prefab, grid.GetWorldPosition(x, z), Quaternion.identity, BuildingHolder);
+                foreach (Vector2Int gridPosition in gridPositionList)
+                {
+                    grid.GetGridObject(gridPosition.x, gridPosition.y).SetTransform(buildTransform);
+                }
             }
             else
             {
@@ -44,30 +61,31 @@ public class GridBuildingSystem : MonoBehaviour
 
     public void ShowGhost()
     {
-        if (building != null)
+        if (placedObjectTypeSO != null)
         {
-            GhostObject.transform.position = UtilsClass.GetMouseWorldPosition();
+            Ghost.transform.position = UtilsClass.GetMouseWorldPosition();
         }
     }
 
-    public void SelectPowerPlant()
+    public void SelectToBuild(BuildingType buildingType)
     {
-        building = prefabs.PowerPlant;
-        GhostObject.GetComponent<SpriteRenderer>().sprite = prefabs.PowerPlantSprite;
-        GhostObject.gameObject.SetActive(true);
-    }
-
-    public void SelectBarrracks()
-    {
-        building = prefabs.Barracks;
-        GhostObject.GetComponent<SpriteRenderer>().sprite = prefabs.BarracksSprite;
-        GhostObject.SetActive(true);
+        Ghost.SetActive(false);
+        switch (buildingType)
+        {
+            case BuildingType.Barracks:
+                placedObjectTypeSO = prefabs.Barracks;
+                Ghost = BarracksGhost;
+                break;
+            case BuildingType.PowerPlant:
+                placedObjectTypeSO = prefabs.PowerPlant;
+                Ghost = PowerPlantGhost;
+                break;
+        }
     }
 
     public void UnSelect()
     {
-        building = null;
-        GhostObject.SetActive(false);
+        placedObjectTypeSO = null;
     }
 
     public void SelectBuilding(PowerPlant powerPlant)
@@ -80,19 +98,6 @@ public class GridBuildingSystem : MonoBehaviour
         ChoosenBarraks = barracks;
         UIManager.Instance.SelectBarracks();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

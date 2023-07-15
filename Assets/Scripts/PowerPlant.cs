@@ -8,8 +8,6 @@ using DG.Tweening;
 public class PowerPlant : MonoBehaviour
 {
     [SerializeField] private SettingsSO settings;
-    [SerializeField] private int width;
-    [SerializeField] private int height;
     [SerializeField] private Image imgProgressFill;
     [SerializeField] private Image imgHealthBarFill;
     private float health;

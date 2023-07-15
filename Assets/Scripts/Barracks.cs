@@ -8,8 +8,6 @@ public class Barracks : MonoBehaviour
 {
     [SerializeField] private SettingsSO settings;
     [SerializeField] private PrefabsSO prefabs;
-    [SerializeField] private int width;
-    [SerializeField] private int height;
     [SerializeField] private Image imgHealthBarFill;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform firstPoint;

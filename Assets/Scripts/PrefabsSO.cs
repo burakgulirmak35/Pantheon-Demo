@@ -5,13 +5,9 @@ using UnityEngine.UI;
 [CreateAssetMenu(menuName = "ScriptableObjects/Prefabs")]
 public class PrefabsSO : ScriptableObject
 {
-    public Transform PowerPlant;
-    public Transform Barracks;
-    public Transform Base;
-    [Space]
-    public Sprite PowerPlantSprite;
-    public Sprite BarracksSprite;
-    [Space]
+    public PlacedObjectTypeSO PowerPlant;
+    public PlacedObjectTypeSO Barracks;
+    public PlacedObjectTypeSO Base;
     public Transform[] Soldiers;
     [Space]
     public GameObject pfBullet;
