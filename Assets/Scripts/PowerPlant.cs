@@ -8,11 +8,12 @@ using DG.Tweening;
 public class PowerPlant : MonoBehaviour
 {
     [SerializeField] private SettingsSO settings;
-    [Space]
+    [SerializeField] private int width;
+    [SerializeField] private int height;
     [SerializeField] private Image imgProgressFill;
-    [Space]
     [SerializeField] private Image imgHealthBarFill;
     private float health;
+
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class PowerPlant : MonoBehaviour
 
     private void OnMouseDown()
     {
-        BuildingManager.Instance.SelectBuilding(this);
+        GridBuildingSystem.Instance.SelectBuilding(this);
     }
 
     public void AddHealth(float amount)

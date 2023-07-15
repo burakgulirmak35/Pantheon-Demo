@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                BuildingManager.Instance.Build();
+                GridBuildingSystem.Instance.Build();
                 selectionAreaTransform.gameObject.SetActive(true);
             }
             startPosition = UtilsClass.GetMouseWorldPosition();
@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
         {
             UIManager.Instance.UnSelectBuildingType();
         }
-        BuildingManager.Instance.ShowGhost();
+        GridBuildingSystem.Instance.ShowGhost();
     }
 
     private void ControlUnits()

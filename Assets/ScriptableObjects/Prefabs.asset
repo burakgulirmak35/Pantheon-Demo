@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d889b5890a2be2419c4e232addc3b0e, type: 3}
   m_Name: Prefabs
   m_EditorClassIdentifier: 
-  PowerPlant: {fileID: 7199331509251857780, guid: 68778a4f50e5c8241b64e55e3d9c5afb, type: 3}
-  Barracks: {fileID: 7199331509251857780, guid: c7f9d3d901930334f86dab6e3760a0a2, type: 3}
-  PowerPlantSprite: {fileID: 21300000, guid: 54c7bd123a6138d45aeeb88e1c190804, type: 3}
-  BarracksSprite: {fileID: 21300000, guid: 8513b717eba2e4e49a5e2aae0c77cd5b, type: 3}
+  PowerPlant: {fileID: 4782235985580720507, guid: a5dcd02249c17174685b6147459d3651, type: 3}
+  Barracks: {fileID: 4782235985580720507, guid: 091bd0f9854ba8e4bbddceb3888b3281, type: 3}
+  Base: {fileID: 4782235985580720507, guid: 37f232e29414be74ea1acc5189ee2f7c, type: 3}
+  PowerPlantSprite: {fileID: 0}
+  BarracksSprite: {fileID: 0}
   Soldiers:
   - {fileID: 2332573258020241553, guid: f38ac680828007748977e0c410a249f2, type: 3}
   - {fileID: 2332573258020241553, guid: ea1e9883a92d81348bddfa8ff8bac0c6, type: 3}
   - {fileID: 2332573258020241553, guid: cc8dffa083b752e42a55c5f1aac5a16e, type: 3}
   pfBullet: {fileID: 390511445376697977, guid: 93b1f3c822343724ab052faa0e328d8f, type: 3}
   pfHitEffect: {fileID: 0}
+  pfWorldText: {fileID: 2415433774831474974, guid: c1015af6a0b71a942a2d6c94c70b19bc, type: 3}

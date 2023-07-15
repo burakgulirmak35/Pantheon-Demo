@@ -8,13 +8,13 @@ public class Barracks : MonoBehaviour
 {
     [SerializeField] private SettingsSO settings;
     [SerializeField] private PrefabsSO prefabs;
-    [Space]
+    [SerializeField] private int width;
+    [SerializeField] private int height;
     [SerializeField] private Image imgHealthBarFill;
-    [Space]
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform firstPoint;
-    private float health;
     private SoldierUnit soldierUnit;
+    private float health;
 
     private void Start()
     {
@@ -27,7 +27,7 @@ public class Barracks : MonoBehaviour
 
     private void OnMouseDown()
     {
-        BuildingManager.Instance.SelectBuilding(this);
+        GridBuildingSystem.Instance.SelectBuilding(this);
     }
 
     public void AddHealth(float amount)

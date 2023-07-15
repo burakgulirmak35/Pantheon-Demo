@@ -7,6 +7,7 @@ public class PrefabsSO : ScriptableObject
 {
     public Transform PowerPlant;
     public Transform Barracks;
+    public Transform Base;
     [Space]
     public Sprite PowerPlantSprite;
     public Sprite BarracksSprite;
@@ -15,4 +16,5 @@ public class PrefabsSO : ScriptableObject
     [Space]
     public GameObject pfBullet;
     public GameObject pfHitEffect;
+    public GameObject pfWorldText;
 }

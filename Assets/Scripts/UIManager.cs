@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
         {
             imgPowerPlantSelected.enabled = true;
             imgBarracksSelected.enabled = false;
-            BuildingManager.Instance.SelectPowerPlant();
+            GridBuildingSystem.Instance.SelectPowerPlant();
         }
     }
 
@@ -80,7 +80,7 @@ public class UIManager : MonoBehaviour
         {
             imgPowerPlantSelected.enabled = false;
             imgBarracksSelected.enabled = true;
-            BuildingManager.Instance.SelectBarrracks();
+            GridBuildingSystem.Instance.SelectBarrracks();
         }
     }
 
@@ -88,7 +88,7 @@ public class UIManager : MonoBehaviour
     {
         imgPowerPlantSelected.enabled = false;
         imgBarracksSelected.enabled = false;
-        BuildingManager.Instance.UnSelect();
+        GridBuildingSystem.Instance.UnSelect();
     }
 
     public void SelectBarracks()
