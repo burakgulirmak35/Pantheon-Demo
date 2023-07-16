@@ -26,6 +26,8 @@ public class Bullet : MonoBehaviour
         //hitEffect = Spawner.Instance.GetHitEffect();
         //hitEffect.transform.position = transform.position;
         //hitEffect.SetActive(true);
+
+        Spawner.Instance.CreateWorldTextPopup(Power.ToString(), transform.position);
         gameObject.SetActive(false);
         if (DissaperCoro != null)
         {

@@ -11,8 +11,8 @@ public class UnitButton : MonoBehaviour
     [SerializeField] private UnitSO unitSO;
     [Space]
     [SerializeField] private Image imgUnit;
+    [SerializeField] private TextMeshProUGUI txtName;
     [SerializeField] private TextMeshProUGUI txtPrice;
-    [Space]
     [SerializeField] private TextMeshProUGUI txtHealth;
     [SerializeField] private TextMeshProUGUI txtPower;
     [Space]
@@ -27,6 +27,7 @@ public class UnitButton : MonoBehaviour
         txtPrice.text = "$" + unitSO.unitPrice.ToString();
         txtHealth.text = unitSO.unitHealth.ToString();
         txtPower.text = unitSO.power.ToString();
+        txtName.text = unitSO.unitName.ToString();
     }
 
     private void buyUnit()

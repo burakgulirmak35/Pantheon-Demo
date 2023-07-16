@@ -90,7 +90,7 @@ public class Spawner : MonoBehaviour
     public void CreateWorldTextPopup(string text, Vector3 localPosition)
     {
         tempObject = GetWorldText();
-        StartCoroutine(DisableObject(tempObject, 1f));
+        StartCoroutine(DisableObject(tempObject, 1.5f));
         tempObject.transform.position = localPosition;
         tempObject.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = text;
     }
