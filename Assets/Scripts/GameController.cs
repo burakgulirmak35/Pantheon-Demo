@@ -51,7 +51,7 @@ public class GameController : MonoBehaviour
         Vector3 moveToPosition = UtilsClass.GetMouseWorldPosition();
 
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        if (hit.collider != null && (hit.collider.tag.Equals("Enemy") || hit.collider.tag.Equals("Barracks") || hit.collider.tag.Equals("PowerPlant")))
+        if (hit.collider != null && hit.collider.tag.Equals("Enemy"))
         {
             foreach (SoldierUnit soldierUnit in selectedUnitList)
             {
