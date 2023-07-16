@@ -20,16 +20,17 @@ public class SoldierUnit : MonoBehaviour
     private float health;
     private float healthAmount;
     private float fireRate;
-    private int unitPower;
+    private int power;
     private float bulletForce = 10f;
     [Space]
     private GameObject selectedGameObject;
+    private bool selected;
 
     private void Awake()
     {
         selectedGameObject = transform.Find("Selected").gameObject;
         health = unitSO.unitHealth;
-        unitPower = unitSO.unitPower;
+        power = unitSO.power;
         fireRate = unitSO.fireRate;
 
         imgHealthBarFill.fillAmount = 1;
@@ -39,12 +40,18 @@ public class SoldierUnit : MonoBehaviour
     private SelectedUnitUI selectedUnitUI;
     public void UnSelect()
     {
-        selectedUnitUI.gameObject.SetActive(false);
-        selectedUnitUI = null;
-        selectedGameObject.SetActive(false);
+        if (selected)
+        {
+            selected = false;
+            selectedUnitUI.gameObject.SetActive(false);
+            selectedUnitUI = null;
+            selectedGameObject.SetActive(false);
+        }
+
     }
     public void Select(SelectedUnitUI _selectedUnitUI)
     {
+        selected = true;
         selectedUnitUI = _selectedUnitUI;
         selectedUnitUI.gameObject.SetActive(true);
         selectedGameObject.SetActive(true);
@@ -90,7 +97,6 @@ public class SoldierUnit : MonoBehaviour
             if (Vector3.Distance(transform.position, targetPosition) > 0.2f)
             {
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
-
                 float distanceBefore = Vector3.Distance(transform.position, targetPosition);
                 transform.position = transform.position + moveDir * speed * Time.deltaTime;
             }
@@ -115,15 +121,16 @@ public class SoldierUnit : MonoBehaviour
             while (target != null && target.gameObject.activeSelf)
             {
                 yield return new WaitForSeconds(1 / fireRate);
-                Shoot();
+                if (target != null && target.gameObject.activeSelf)
+                    Shoot();
             }
             StopFire();
+            isFire = false;
         }
     }
 
-    private void StopFire()
+    public void StopFire()
     {
-        isFire = false;
         target = null;
     }
 
@@ -132,29 +139,39 @@ public class SoldierUnit : MonoBehaviour
     private void Shoot()
     {
         bullet = Spawner.Instance.GetBullet();
+        bullet.transform.rotation = body.rotation;
         bullet.transform.position = transform.position;
+        bullet.GetComponent<Bullet>().Power = power;
         bulletrb = bullet.GetComponent<Rigidbody2D>();
         bulletrb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
     }
 
-    public void AddHealth(float amount)
+    public void TakeDamage(float amount)
     {
-        health += amount;
+        health -= amount;
         if (health >= unitSO.unitHealth)
         {
             health = unitSO.unitHealth;
+            DOTween.To(() => imgHealthBarFill.fillAmount, x => imgHealthBarFill.fillAmount = x, healthAmount, 0.2f).SetEase(Ease.Linear);
         }
         else if (health <= 0)
         {
-            health = 0;
+            Die();
         }
         healthAmount = health / unitSO.unitHealth;
-        DOTween.To(() => imgHealthBarFill.fillAmount, x => imgHealthBarFill.fillAmount = x, healthAmount, 0.2f).SetEase(Ease.Linear);
+
         if (selectedUnitUI != null)
         {
             selectedUnitUI.UpdateHealth(healthAmount);
         }
     }
 
-
+    private void Die()
+    {
+        health = 0;
+        imgHealthBarFill.fillAmount = 0;
+        UnSelect();
+        GameController.Instance.RemoveSelectedUnit(this);
+        Destroy(gameObject);
+    }
 }

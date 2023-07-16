@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731e1c2b22d1e04499c0a4d43ec8091d, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  PowerPlantBuildPrice: 5
+  PowerPlantBuildPrice: 0
   PowerPlantProductAmount: 1
   PowerPlantBuildTime: 1
   PowerPlantProductTime: 0.5
-  PowerPlantHealth: 100
-  BarracksBuildPrice: 5
+  PowerPlantHealth: 50
+  BarracksBuildPrice: 0
   BarracksHealth: 100

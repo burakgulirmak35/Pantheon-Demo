@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 2873685443484656729}
   - component: {fileID: 1824555801449209583}
   m_Layer: 0
-  m_Name: Soldier 0
+  m_Name: Soldier 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcaf657bd837c94e94d0415b1ecf905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitSO: {fileID: 11400000, guid: 19784b94595a2d34ba11959f4aea46a1, type: 2}
+  unitSO: {fileID: 11400000, guid: d6a5dbee6f7dc4d4daeab250877ebf67, type: 2}
   imgHealthBarFill: {fileID: 8826139883257362686}
   firePoint: {fileID: 6891265865128206107}
   body: {fileID: 2332573258273349286}

@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 5082080099679213206}
   m_Layer: 0
   m_Name: pfPowerPlant
-  m_TagString: Untagged
+  m_TagString: PowerPlant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,6 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 81aff335d7840324a960b90d0e57960b, type: 2}
+  prefabs: {fileID: 11400000, guid: 283d164945d3e964894baa6c2dcb1729, type: 2}
   imgProgressFill: {fileID: 5814237649529149957}
   imgHealthBarFill: {fileID: 2313982493809726665}
 --- !u!61 &5082080099679213206

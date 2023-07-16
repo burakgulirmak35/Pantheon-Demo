@@ -26,7 +26,7 @@ public class UnitButton : MonoBehaviour
         imgUnit.sprite = unitSO.unitSprite;
         txtPrice.text = "$" + unitSO.unitPrice.ToString();
         txtHealth.text = unitSO.unitHealth.ToString();
-        txtPower.text = unitSO.unitPower.ToString();
+        txtPower.text = unitSO.power.ToString();
     }
 
     private void buyUnit()

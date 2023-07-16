@@ -20,8 +20,8 @@ public class GridBuildingSystem : MonoBehaviour
     {
         Ghost = BarracksGhost;
 
-        int gridWidth = 40;
-        int gridHeight = 40;
+        int gridWidth = 100;
+        int gridHeight = 100;
         float cellSize = 1f;
 
         Instance = this;
@@ -50,6 +50,15 @@ public class GridBuildingSystem : MonoBehaviour
             if (canBuild)
             {
                 Transform buildTransform = Instantiate(placedObjectTypeSO.prefab, grid.GetWorldPosition(x, z), Quaternion.identity, BuildingHolder);
+                switch (placedObjectTypeSO.buildingType)
+                {
+                    case BuildingType.Barracks:
+                        buildTransform.GetComponent<Barracks>().SetGridList(gridPositionList);
+                        break;
+                    case BuildingType.PowerPlant:
+                        buildTransform.GetComponent<PowerPlant>().SetGridList(gridPositionList);
+                        break;
+                }
                 foreach (Vector2Int gridPosition in gridPositionList)
                 {
                     pathfinding.GetNode(gridPosition.x, gridPosition.y).SetIsWalkable(!pathfinding.GetNode(gridPosition.x, gridPosition.y).isWalkable);
@@ -62,6 +71,16 @@ public class GridBuildingSystem : MonoBehaviour
                 Spawner.Instance.CreateWorldTextPopup("Cannot build here!", UtilsClass.GetMouseWorldPosition());
             }
         }
+    }
+
+    public void ClearArea(List<Vector2Int> _gridPositionList)
+    {
+        foreach (Vector2Int gridPosition in _gridPositionList)
+        {
+            pathfinding.GetNode(gridPosition.x, gridPosition.y).SetIsWalkable(true);
+            grid.GetGridObject(gridPosition.x, gridPosition.y).ClearTransform();
+        }
+
     }
 
     public void CancelBuilding()

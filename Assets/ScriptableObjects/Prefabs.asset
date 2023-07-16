@@ -17,8 +17,8 @@ MonoBehaviour:
   Base: {fileID: 11400000, guid: 9cab3b17e88dd8f43b1ad3dbbf9c1e38, type: 2}
   Soldiers:
   - {fileID: 2332573258020241553, guid: f38ac680828007748977e0c410a249f2, type: 3}
-  - {fileID: 2332573258020241553, guid: ea1e9883a92d81348bddfa8ff8bac0c6, type: 3}
-  - {fileID: 2332573258020241553, guid: cc8dffa083b752e42a55c5f1aac5a16e, type: 3}
+  - {fileID: 2332573258020241553, guid: 75aff790837cff44b8d21c9c715e5ce6, type: 3}
+  - {fileID: 2332573258020241553, guid: eb3596fff6ec7514587caccc536bc040, type: 3}
   pfBullet: {fileID: 390511445376697977, guid: 93b1f3c822343724ab052faa0e328d8f, type: 3}
   pfHitEffect: {fileID: 0}
   pfWorldText: {fileID: 2415433774831474974, guid: c1015af6a0b71a942a2d6c94c70b19bc, type: 3}

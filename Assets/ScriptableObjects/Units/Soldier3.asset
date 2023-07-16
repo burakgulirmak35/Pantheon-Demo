@@ -17,5 +17,5 @@ MonoBehaviour:
   unitTrainTime: 5
   unitPrice: 0
   unitHealth: 5
-  unitPower: 5
+  power: 2
   fireRate: 1

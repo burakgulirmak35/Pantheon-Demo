@@ -5,8 +5,31 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private GameObject hitEffect;
+    [HideInInspector] public float Power;
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        switch (other.gameObject.tag)
+        {
+            case "Enemy":
+                Hit();
+                other.GetComponent<SoldierUnit>().TakeDamage(Power);
+                break;
+            case "Barracks":
+                Hit();
+                other.GetComponent<Barracks>().TakeDamage(Power);
+                break;
+            case "PowerPlant":
+                Hit();
+                other.GetComponent<PowerPlant>().TakeDamage(Power);
+                break;
+            default:
+                // Hit();
+                break;
+        }
+    }
+
+    private void Hit()
     {
         //hitEffect = Spawner.Instance.GetHitEffect();
         //hitEffect.transform.position = transform.position;

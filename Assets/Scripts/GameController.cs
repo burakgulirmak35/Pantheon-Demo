@@ -51,7 +51,7 @@ public class GameController : MonoBehaviour
         Vector3 moveToPosition = UtilsClass.GetMouseWorldPosition();
 
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        if (hit.collider != null && hit.collider.tag.Equals("Enemy"))
+        if (hit.collider != null && (hit.collider.tag.Equals("Enemy") || hit.collider.tag.Equals("Barracks") || hit.collider.tag.Equals("PowerPlant")))
         {
             foreach (SoldierUnit soldierUnit in selectedUnitList)
             {
@@ -65,6 +65,7 @@ public class GameController : MonoBehaviour
 
             foreach (SoldierUnit soldierUnit in selectedUnitList)
             {
+                soldierUnit.StopFire();
                 soldierUnit.MoveTo(targetPositionList[targetPositionListIndex]);
                 targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
             }
@@ -123,7 +124,7 @@ public class GameController : MonoBehaviour
         {
             soldierUnit.UnSelect();
         }
-        selectedUnitList.Clear(); ;
+        selectedUnitList.Clear();
         foreach (Collider2D collider2D in collider2DArray)
         {
             SoldierUnit soldierUnit = collider2D.GetComponent<SoldierUnit>();
@@ -136,4 +137,11 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void RemoveSelectedUnit(SoldierUnit _soldierUnit)
+    {
+        if (selectedUnitList.Contains(_soldierUnit))
+        {
+            selectedUnitList.Remove(_soldierUnit);
+        }
+    }
 }

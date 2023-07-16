@@ -26,18 +26,28 @@ public class PowerPlant : MonoBehaviour
         GridBuildingSystem.Instance.SelectBuilding(this);
     }
 
-    public void AddHealth(float amount)
+    public void TakeDamage(float amount)
     {
-        health += amount;
-        if (health >= settings.PowerPlantHealth)
+        health -= amount;
+        if (health >= settings.BarracksHealth)
         {
-            health = settings.PowerPlantHealth;
+            health = settings.BarracksHealth;
         }
         else if (health <= 0)
         {
             health = 0;
+            imgHealthBarFill.fillAmount = 0;
+            GridBuildingSystem.Instance.ClearArea(myGridPositionList);
+            Destroy(gameObject);
+            return;
         }
-        DOTween.To(() => imgHealthBarFill.fillAmount, x => imgHealthBarFill.fillAmount = x, health / settings.PowerPlantHealth, 0.2f).SetEase(Ease.Linear);
+        DOTween.To(() => imgHealthBarFill.fillAmount, x => imgHealthBarFill.fillAmount = x, health / settings.BarracksHealth, 0.25f).SetEase(Ease.Linear);
+    }
+
+    private List<Vector2Int> myGridPositionList;
+    public void SetGridList(List<Vector2Int> _gridPositionList)
+    {
+        myGridPositionList = _gridPositionList;
     }
 
     private IEnumerator GenerateResourceCoro()
