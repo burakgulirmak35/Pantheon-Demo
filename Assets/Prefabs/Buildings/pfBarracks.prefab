@@ -753,6 +753,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BarracksVisual
       objectReference: {fileID: 0}
+    - target: {fileID: 3615012451147991984, guid: a53bfaafba1f92246a9f11d156037306, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3907048724288786859, guid: a53bfaafba1f92246a9f11d156037306, type: 3}
       propertyPath: m_RootOrder
       value: 0
