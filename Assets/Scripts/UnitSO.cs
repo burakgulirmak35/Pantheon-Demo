@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObjects/Unit")]
 public class UnitSO : ScriptableObject
 {
-    public string nameString;
+    public string unitName;
     public int unitID;
     public Sprite unitSprite;
     public float unitTrainTime;

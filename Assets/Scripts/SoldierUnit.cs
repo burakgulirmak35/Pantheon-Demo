@@ -53,7 +53,7 @@ public class SoldierUnit : MonoBehaviour
         selectedUnitUI = _selectedUnitUI;
         selectedUnitUI.gameObject.SetActive(true);
         selectedGameObject.SetActive(true);
-        _selectedUnitUI.SelectUnit(unitSO.unitSprite, healthSystem.healthAmount);
+        _selectedUnitUI.SelectUnit(unitSO.unitSprite, healthSystem.healthAmount, unitSO.unitName);
     }
 
     public void MoveTo(Vector3 targetPosition)
