@@ -9,11 +9,13 @@ public class CameraHandler : MonoBehaviour
 
     private float orthographicSize;
     private float targetOrthographicSize;
+    private Vector3 currentPosition;
 
     private void Start()
     {
         orthographicSize = cinemachineVirtualCamera.m_Lens.OrthographicSize;
         targetOrthographicSize = orthographicSize;
+        currentPosition = transform.position;
     }
 
     private void Update()
@@ -30,7 +32,10 @@ public class CameraHandler : MonoBehaviour
         Vector3 moveDir = new Vector3(x, y).normalized;
         float moveSpeed = 30f;
 
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        currentPosition += moveDir * moveSpeed * Time.deltaTime;
+        currentPosition.x = Mathf.Clamp(currentPosition.x, 10, 90);
+        currentPosition.y = Mathf.Clamp(currentPosition.y, 10, 90);
+        transform.position = currentPosition;
     }
 
     private void HandleZoom()

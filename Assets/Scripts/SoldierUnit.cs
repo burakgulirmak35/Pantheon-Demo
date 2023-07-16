@@ -69,12 +69,6 @@ public class SoldierUnit : MonoBehaviour
 
     Vector2 lookDir;
     float angle;
-    public void Fire(Transform _target)
-    {
-        target = _target;
-        StartCoroutine(FireCorotine());
-    }
-
     private void Update()
     {
         if (target != null)
@@ -91,16 +85,13 @@ public class SoldierUnit : MonoBehaviour
         if (pathVectorList != null)
         {
             Vector3 targetPosition = pathVectorList[currentPathIndex];
-            if (Vector3.Distance(transform.position, targetPosition) > 0.2f)
+            if (Vector3.Distance(transform.position, targetPosition) > 0.2f && !isFire)
             {
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
                 float distanceBefore = Vector3.Distance(transform.position, targetPosition);
                 transform.position = transform.position + moveDir * walkSpeed * Time.deltaTime;
-                if (!isFire)
-                {
-                    body.rotation = Quaternion.FromToRotation(Vector3.up, moveDir);
-                    body.rotation = Quaternion.Euler(body.eulerAngles.x, 0, body.eulerAngles.z);
-                }
+                body.rotation = Quaternion.FromToRotation(Vector3.up, moveDir);
+                body.rotation = Quaternion.Euler(body.eulerAngles.x, 0, body.eulerAngles.z);
             }
             else
             {
@@ -115,7 +106,18 @@ public class SoldierUnit : MonoBehaviour
 
     private Transform target;
     private bool isFire;
-    private IEnumerator FireCorotine()
+    private Coroutine FireCoro;
+
+    public void Fire(Transform _target)
+    {
+        target = _target;
+        if (FireCoro == null)
+        {
+            FireCoro = StartCoroutine(FireLoop());
+        }
+    }
+
+    private IEnumerator FireLoop()
     {
         if (!isFire)
         {
@@ -127,13 +129,18 @@ public class SoldierUnit : MonoBehaviour
                     Shoot();
             }
             StopFire();
-            isFire = false;
         }
     }
 
     public void StopFire()
     {
+        if (FireCoro != null)
+        {
+            StopCoroutine(FireCoro);
+            FireCoro = null;
+        }
         target = null;
+        isFire = false;
     }
 
     private GameObject bullet;

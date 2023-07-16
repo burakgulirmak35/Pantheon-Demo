@@ -10,6 +10,7 @@ public class HealthSystem : MonoBehaviour
     public event EventHandler OnDamaged;
     public event EventHandler OnDied;
 
+    [SerializeField] public Transform target;
     [SerializeField] private Image imgHealthBarFill;
     private float startHealth;
     private float health;

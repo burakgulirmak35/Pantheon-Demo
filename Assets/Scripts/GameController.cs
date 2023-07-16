@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour
         {
             foreach (SoldierUnit soldierUnit in selectedUnitList)
             {
-                soldierUnit.Fire(hit.transform);
+                soldierUnit.Fire(hit.collider.GetComponent<HealthSystem>().target);
             }
         }
         else

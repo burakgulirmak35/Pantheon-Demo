@@ -292,7 +292,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b0255fa71996d4b9d12d62bc09db7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 7486959270829409137}
   imgHealthBarFill: {fileID: 2313982493809726665}
+  healthAmount: 0
 --- !u!61 &5082080099679213206
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -558,5 +560,10 @@ PrefabInstance:
 --- !u!4 &3803989005484339454 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2525281483609434077, guid: 70d319e9b280c5e41bdeeeb58e909311, type: 3}
+  m_PrefabInstance: {fileID: 1711897795709622051}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7486959270829409137 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8081397491952587858, guid: 70d319e9b280c5e41bdeeeb58e909311, type: 3}
   m_PrefabInstance: {fileID: 1711897795709622051}
   m_PrefabAsset: {fileID: 0}
