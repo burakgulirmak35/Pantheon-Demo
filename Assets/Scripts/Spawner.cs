@@ -18,6 +18,7 @@ public class Spawner : MonoBehaviour
     private Queue<GameObject> hitEffectPool = new Queue<GameObject>();
     //--------------------------------------
     private int worldTextCount;
+    [SerializeField] private int worldTextPoolCount;
     private Queue<GameObject> worldTextPool = new Queue<GameObject>();
     //--------------------------------------
     private GameObject tempObject;
@@ -32,7 +33,7 @@ public class Spawner : MonoBehaviour
 
     private void GenerateWorldTextPool()
     {
-        for (int i = 0; i < bulletPoolCount; i++)
+        for (int i = 0; i < worldTextPoolCount; i++)
         {
             tempObject = Instantiate(prefabs.pfWorldText, PoolHolder);
             tempObject.SetActive(false);

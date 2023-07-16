@@ -1999,9 +1999,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -1512615385
+  m_SortingLayer: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: d2fa16b4e8e25ab448ddb02430ef315c, type: 3}
   m_Color: {r: 0.57309556, g: 1, b: 0.3915094, a: 0.39215687}
   m_FlipX: 0
@@ -5938,8 +5938,9 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 81aff335d7840324a960b90d0e57960b, type: 2}
   prefabs: {fileID: 11400000, guid: 283d164945d3e964894baa6c2dcb1729, type: 2}
   PoolHolder: {fileID: 508470743}
-  bulletPoolCount: 20
-  hitEffectPoolCount: 20
+  bulletPoolCount: 40
+  hitEffectPoolCount: 40
+  worldTextPoolCount: 40
 --- !u!1 &1984416681
 GameObject:
   m_ObjectHideFlags: 0
