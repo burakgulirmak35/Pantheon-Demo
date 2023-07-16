@@ -271,6 +271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2332573258020241553}
   - component: {fileID: 2332573258020241559}
+  - component: {fileID: 6109519588606636399}
   - component: {fileID: 2873685443484656729}
   - component: {fileID: 1824555801449209583}
   m_Layer: 0
@@ -312,9 +313,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitSO: {fileID: 11400000, guid: 19784b94595a2d34ba11959f4aea46a1, type: 2}
-  imgHealthBarFill: {fileID: 8826139883257362686}
   firePoint: {fileID: 6891265865128206107}
   body: {fileID: 2332573258273349286}
+--- !u!114 &6109519588606636399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2332573258020241552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b0255fa71996d4b9d12d62bc09db7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imgHealthBarFill: {fileID: 8826139883257362686}
+  healthAmount: 0
 --- !u!61 &2873685443484656729
 BoxCollider2D:
   m_ObjectHideFlags: 0

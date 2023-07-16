@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PowerPlant
   m_EditorClassIdentifier: 
   buildingType: 1
+  Health: 50
   prefab: {fileID: 4782235985580720507, guid: a5dcd02249c17174685b6147459d3651, type: 3}
   width: 2
   height: 2

@@ -8,46 +8,20 @@ using DG.Tweening;
 public class PowerPlant : MonoBehaviour
 {
     [SerializeField] private SettingsSO settings;
+    [SerializeField] private PlacedObjectTypeSO buildingType;
     [SerializeField] private Image imgProgressFill;
-    [SerializeField] private Image imgHealthBarFill;
-    private float health;
 
     private void Start()
     {
         UIManager.Instance.SpendResource(settings.PowerPlantBuildPrice);
         UIManager.Instance.UnSelectBuildingType();
         StartCoroutine(GenerateResourceCoro());
-        imgHealthBarFill.fillAmount = 1;
-        health = settings.PowerPlantHealth;
+        GetComponent<HealthSystem>().SetHealth(buildingType.Health);
     }
 
     private void OnMouseDown()
     {
         GridBuildingSystem.Instance.SelectBuilding(this);
-    }
-
-    public void TakeDamage(float amount)
-    {
-        health -= amount;
-        if (health >= settings.BarracksHealth)
-        {
-            health = settings.BarracksHealth;
-        }
-        else if (health <= 0)
-        {
-            health = 0;
-            imgHealthBarFill.fillAmount = 0;
-            GridBuildingSystem.Instance.ClearArea(myGridPositionList);
-            Destroy(gameObject);
-            return;
-        }
-        DOTween.To(() => imgHealthBarFill.fillAmount, x => imgHealthBarFill.fillAmount = x, health / settings.BarracksHealth, 0.25f).SetEase(Ease.Linear);
-    }
-
-    private List<Vector2Int> myGridPositionList;
-    public void SetGridList(List<Vector2Int> _gridPositionList)
-    {
-        myGridPositionList = _gridPositionList;
     }
 
     private IEnumerator GenerateResourceCoro()

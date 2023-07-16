@@ -50,15 +50,7 @@ public class GridBuildingSystem : MonoBehaviour
             if (canBuild)
             {
                 Transform buildTransform = Instantiate(placedObjectTypeSO.prefab, grid.GetWorldPosition(x, z), Quaternion.identity, BuildingHolder);
-                switch (placedObjectTypeSO.buildingType)
-                {
-                    case BuildingType.Barracks:
-                        buildTransform.GetComponent<Barracks>().SetGridList(gridPositionList);
-                        break;
-                    case BuildingType.PowerPlant:
-                        buildTransform.GetComponent<PowerPlant>().SetGridList(gridPositionList);
-                        break;
-                }
+                buildTransform.GetComponent<HealthSystem>().SetGridList(gridPositionList);
                 foreach (Vector2Int gridPosition in gridPositionList)
                 {
                     pathfinding.GetNode(gridPosition.x, gridPosition.y).SetIsWalkable(!pathfinding.GetNode(gridPosition.x, gridPosition.y).isWalkable);

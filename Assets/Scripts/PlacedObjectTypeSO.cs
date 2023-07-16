@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlacedObjectTypeSO : ScriptableObject
 {
     public BuildingType buildingType;
+    public float Health;
     public Transform prefab;
     public int width;
     public int height;

@@ -239,10 +239,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4782235985580720507}
   - component: {fileID: 9062091223332679039}
+  - component: {fileID: -3893020708015438235}
   - component: {fileID: 5082080099679213206}
   m_Layer: 0
   m_Name: pfPowerPlant
-  m_TagString: PowerPlant
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,8 +278,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 81aff335d7840324a960b90d0e57960b, type: 2}
-  prefabs: {fileID: 11400000, guid: 283d164945d3e964894baa6c2dcb1729, type: 2}
+  buildingType: {fileID: 11400000, guid: 20d2e3ce0a56e4b46a7ea3c736891d6d, type: 2}
   imgProgressFill: {fileID: 5814237649529149957}
+--- !u!114 &-3893020708015438235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4782235985580720506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b0255fa71996d4b9d12d62bc09db7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   imgHealthBarFill: {fileID: 2313982493809726665}
 --- !u!61 &5082080099679213206
 BoxCollider2D:

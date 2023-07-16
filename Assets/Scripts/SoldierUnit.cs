@@ -9,16 +9,14 @@ public class SoldierUnit : MonoBehaviour
 {
     [SerializeField] private UnitSO unitSO;
     [Space]
-    [SerializeField] private Image imgHealthBarFill;
     [SerializeField] private Transform firePoint;
     [SerializeField] private Transform body;
+    private HealthSystem healthSystem;
     [Space]
     private const float speed = 20f;
     private int currentPathIndex;
     private List<Vector3> pathVectorList;
     [Space]
-    private float health;
-    private float healthAmount;
     private float fireRate;
     private int power;
     private float bulletForce = 10f;
@@ -29,12 +27,11 @@ public class SoldierUnit : MonoBehaviour
     private void Awake()
     {
         selectedGameObject = transform.Find("Selected").gameObject;
-        health = unitSO.unitHealth;
         power = unitSO.power;
         fireRate = unitSO.fireRate;
-
-        imgHealthBarFill.fillAmount = 1;
-        healthAmount = 1;
+        healthSystem = GetComponent<HealthSystem>();
+        healthSystem.SetHealth(unitSO.unitHealth);
+        healthSystem.OnDied += OnDie;
     }
 
     private SelectedUnitUI selectedUnitUI;
@@ -55,7 +52,7 @@ public class SoldierUnit : MonoBehaviour
         selectedUnitUI = _selectedUnitUI;
         selectedUnitUI.gameObject.SetActive(true);
         selectedGameObject.SetActive(true);
-        _selectedUnitUI.SelectUnit(unitSO.unitSprite, healthAmount);
+        _selectedUnitUI.SelectUnit(unitSO.unitSprite, healthSystem.healthAmount);
     }
 
     public void MoveTo(Vector3 targetPosition)
@@ -68,8 +65,6 @@ public class SoldierUnit : MonoBehaviour
             pathVectorList.RemoveAt(0);
         }
     }
-
-
 
     Vector2 lookDir;
     float angle;
@@ -146,32 +141,17 @@ public class SoldierUnit : MonoBehaviour
         bulletrb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
     }
 
-    public void TakeDamage(float amount)
+    private void OnDamaged()
     {
-        health -= amount;
-        if (health >= unitSO.unitHealth)
-        {
-            health = unitSO.unitHealth;
-            DOTween.To(() => imgHealthBarFill.fillAmount, x => imgHealthBarFill.fillAmount = x, healthAmount, 0.2f).SetEase(Ease.Linear);
-        }
-        else if (health <= 0)
-        {
-            Die();
-        }
-        healthAmount = health / unitSO.unitHealth;
-
         if (selectedUnitUI != null)
         {
-            selectedUnitUI.UpdateHealth(healthAmount);
+            selectedUnitUI.UpdateHealth(healthSystem.healthAmount);
         }
     }
 
-    private void Die()
+    private void OnDie(object sender, System.EventArgs e)
     {
-        health = 0;
-        imgHealthBarFill.fillAmount = 0;
         UnSelect();
         GameController.Instance.RemoveSelectedUnit(this);
-        Destroy(gameObject);
     }
 }

@@ -7,7 +7,6 @@ public class PrefabsSO : ScriptableObject
 {
     public PlacedObjectTypeSO PowerPlant;
     public PlacedObjectTypeSO Barracks;
-    public PlacedObjectTypeSO Base;
     public Transform[] Soldiers;
     [Space]
     public GameObject pfBullet;

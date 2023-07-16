@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc804655baf7a474ca81bbc9a94d49de, type: 3}
   m_Name: Barracks
   m_EditorClassIdentifier: 
-  nameString: Barracks
+  buildingType: 0
+  Health: 100
   prefab: {fileID: 4782235985580720507, guid: 091bd0f9854ba8e4bbddceb3888b3281, type: 3}
-  visual: {fileID: 0}
   width: 4
   height: 4

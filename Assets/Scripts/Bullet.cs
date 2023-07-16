@@ -13,15 +13,7 @@ public class Bullet : MonoBehaviour
         {
             case "Enemy":
                 Hit();
-                other.GetComponent<SoldierUnit>().TakeDamage(Power);
-                break;
-            case "Barracks":
-                Hit();
-                other.GetComponent<Barracks>().TakeDamage(Power);
-                break;
-            case "PowerPlant":
-                Hit();
-                other.GetComponent<PowerPlant>().TakeDamage(Power);
+                other.GetComponent<HealthSystem>().TakeDamage(Power);
                 break;
             default:
                 // Hit();

@@ -541,10 +541,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4782235985580720507}
   - component: {fileID: 7837558603223634068}
+  - component: {fileID: 7992420634716001062}
   - component: {fileID: 4902494076832882223}
   m_Layer: 0
   m_Name: pfBarracks
-  m_TagString: Barracks
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -582,9 +583,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 81aff335d7840324a960b90d0e57960b, type: 2}
   prefabs: {fileID: 11400000, guid: 283d164945d3e964894baa6c2dcb1729, type: 2}
-  imgHealthBarFill: {fileID: 9055128377655385529}
+  buildingType: {fileID: 11400000, guid: c25b38b018769c5449929a84e48f691f, type: 2}
   spawnPoint: {fileID: 6715201415196612215}
   firstPoint: {fileID: 7228586879340996260}
+--- !u!114 &7992420634716001062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4782235985580720506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b0255fa71996d4b9d12d62bc09db7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imgHealthBarFill: {fileID: 9055128377655385529}
 --- !u!61 &4902494076832882223
 BoxCollider2D:
   m_ObjectHideFlags: 0
