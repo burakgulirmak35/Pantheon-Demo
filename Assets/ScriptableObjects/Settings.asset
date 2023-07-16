@@ -19,3 +19,4 @@ MonoBehaviour:
   PowerPlantHealth: 50
   BarracksBuildPrice: 0
   BarracksHealth: 100
+  MaxSelectUnitCount: 20

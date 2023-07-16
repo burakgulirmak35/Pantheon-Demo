@@ -23,19 +23,28 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject PanelSelectedUnits;
     [Header("SelectedUnits")]
     [SerializeField] private TextMeshProUGUI txtSelectedCount;
-    [SerializeField] private List<SelectedUnitUI> SelectedUnitList = new List<SelectedUnitUI>();
+    [SerializeField] private Transform SelectUnitArea;
+    private List<SelectedUnitUI> SelectedUnitList = new List<SelectedUnitUI>();
 
     public static UIManager Instance { get; private set; }
-
     private void Awake()
     {
         Instance = this;
         LoadResources();
         SetButtons();
+        CreateSelectUnitList();
 
         PanelBarracks.SetActive(false);
         PanelPowerPlant.SetActive(false);
         PanelSelectedUnits.SetActive(false);
+    }
+
+    private void CreateSelectUnitList()
+    {
+        for (int i = 0; i < settings.MaxSelectUnitCount; i++)
+        {
+            SelectedUnitList.Add(Instantiate(prefabs.SelectUnitUI, SelectUnitArea).GetComponent<SelectedUnitUI>());
+        }
     }
 
     private void SetButtons()

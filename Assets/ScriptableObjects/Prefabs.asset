@@ -21,3 +21,4 @@ MonoBehaviour:
   pfBullet: {fileID: 390511445376697977, guid: 93b1f3c822343724ab052faa0e328d8f, type: 3}
   pfHitEffect: {fileID: 0}
   pfWorldText: {fileID: 2415433774831474974, guid: c1015af6a0b71a942a2d6c94c70b19bc, type: 3}
+  SelectUnitUI: {fileID: 6739560473144583454, guid: 6b2a8648521d94d45857e7ed4ddb24ef, type: 3}

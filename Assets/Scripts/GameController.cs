@@ -5,14 +5,17 @@ using UnityEngine.EventSystems;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private SettingsSO settings;
     public static GameController Instance { get; private set; }
     private Vector3 startPosition;
     private List<SoldierUnit> selectedUnitList = new List<SoldierUnit>();
     [SerializeField] private Transform selectionAreaTransform;
+    private int maxSelectUnitCount;
     private void Awake()
     {
         Instance = this;
         selectionAreaTransform.gameObject.SetActive(false);
+        maxSelectUnitCount = settings.MaxSelectUnitCount;
     }
 
     private void Update()
@@ -51,7 +54,7 @@ public class GameController : MonoBehaviour
         Vector3 moveToPosition = UtilsClass.GetMouseWorldPosition();
 
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        if (hit.collider != null && (hit.collider.tag.Equals("Enemy") || hit.collider.tag.Equals("Allies")))
+        if (hit.collider != null && hit.collider.tag.Equals("Enemy"))
         {
             foreach (SoldierUnit soldierUnit in selectedUnitList)
             {
@@ -131,7 +134,7 @@ public class GameController : MonoBehaviour
         foreach (Collider2D collider2D in collider2DArray)
         {
             SoldierUnit soldierUnit = collider2D.GetComponent<SoldierUnit>();
-            if (soldierUnit != null && !soldierUnit.tag.Equals("Enemy") && selectedUnitList.Count < 20)
+            if (soldierUnit != null && !soldierUnit.tag.Equals("Enemy") && selectedUnitList.Count < maxSelectUnitCount)
             {
                 UIManager.Instance.SelectUnits();
                 selectedUnitList.Add(soldierUnit);

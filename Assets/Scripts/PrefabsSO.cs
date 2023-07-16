@@ -12,4 +12,6 @@ public class PrefabsSO : ScriptableObject
     public GameObject pfBullet;
     public GameObject pfHitEffect;
     public GameObject pfWorldText;
+    [Space]
+    public GameObject SelectUnitUI;
 }
