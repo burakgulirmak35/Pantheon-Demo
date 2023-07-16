@@ -5,6 +5,26 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
 
+    [SerializeField] private Sound GunSound;
+    public static SoundManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public void PlaySound(string str)
+    {
+        switch (str)
+        {
+            case "GunSound":
+                PlayDirect(GunSound);
+                break;
+            default:
+                break;
+        }
+    }
+
     private void PlayDirect(Sound audio)
     {
         AudioSource audioSource = gameObject.AddComponent<AudioSource>();
