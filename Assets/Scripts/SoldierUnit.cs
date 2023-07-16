@@ -13,7 +13,6 @@ public class SoldierUnit : MonoBehaviour
     [SerializeField] private Transform body;
     private HealthSystem healthSystem;
     [Space]
-    private const float speed = 20f;
     private int currentPathIndex;
     private List<Vector3> pathVectorList;
     [Space]
@@ -23,9 +22,11 @@ public class SoldierUnit : MonoBehaviour
     [Space]
     private GameObject selectedGameObject;
     private bool selected;
+    private float walkSpeed;
 
     private void Awake()
     {
+        walkSpeed = unitSO.walkSpeed;
         selectedGameObject = transform.Find("Selected").gameObject;
         power = unitSO.power;
         fireRate = unitSO.fireRate;
@@ -80,6 +81,7 @@ public class SoldierUnit : MonoBehaviour
         {
             Vector2 direction = target.position - body.position;
             body.rotation = Quaternion.FromToRotation(Vector3.up, direction);
+            body.rotation = Quaternion.Euler(body.eulerAngles.x, 0, body.eulerAngles.z);
         }
         HandleMovement();
     }
@@ -93,7 +95,12 @@ public class SoldierUnit : MonoBehaviour
             {
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
                 float distanceBefore = Vector3.Distance(transform.position, targetPosition);
-                transform.position = transform.position + moveDir * speed * Time.deltaTime;
+                transform.position = transform.position + moveDir * walkSpeed * Time.deltaTime;
+                if (!isFire)
+                {
+                    body.rotation = Quaternion.FromToRotation(Vector3.up, moveDir);
+                    body.rotation = Quaternion.Euler(body.eulerAngles.x, 0, body.eulerAngles.z);
+                }
             }
             else
             {
@@ -135,7 +142,7 @@ public class SoldierUnit : MonoBehaviour
     {
         bullet = Spawner.Instance.GetBullet();
         bullet.transform.rotation = body.rotation;
-        bullet.transform.position = transform.position;
+        bullet.transform.position = firePoint.position;
         bullet.GetComponent<Bullet>().Power = power;
         bulletrb = bullet.GetComponent<Rigidbody2D>();
         bulletrb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);

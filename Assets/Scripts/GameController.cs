@@ -66,8 +66,11 @@ public class GameController : MonoBehaviour
             foreach (SoldierUnit soldierUnit in selectedUnitList)
             {
                 soldierUnit.StopFire();
-                soldierUnit.MoveTo(targetPositionList[targetPositionListIndex]);
-                targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
+                if (GridBuildingSystem.Instance.isWalkable((int)targetPositionList[targetPositionListIndex].x, (int)targetPositionList[targetPositionListIndex].y))
+                {
+                    soldierUnit.MoveTo(targetPositionList[targetPositionListIndex]);
+                    targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
+                }
             }
         }
     }

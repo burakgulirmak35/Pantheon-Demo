@@ -65,6 +65,11 @@ public class GridBuildingSystem : MonoBehaviour
         }
     }
 
+    public bool isWalkable(int _x, int _y)
+    {
+        return pathfinding.GetNode(_x, _y).isWalkable;
+    }
+
     public void ClearArea(List<Vector2Int> _gridPositionList)
     {
         foreach (Vector2Int gridPosition in _gridPositionList)

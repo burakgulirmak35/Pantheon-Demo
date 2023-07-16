@@ -31,5 +31,6 @@ public class Barracks : MonoBehaviour
     {
         soldierUnit = Instantiate(prefabs.Soldiers[_unitID], spawnPoint.position, Quaternion.identity).GetComponent<SoldierUnit>();
         soldierUnit.MoveTo(firstPoint.position);
+
     }
 }
