@@ -120,11 +120,26 @@ public class GridBuildingSystem : MonoBehaviour
 
     public void SelectBuilding(Barracks barracks)
     {
-        ChoosenBarraks = barracks;
         UIManager.Instance.SelectBarracks();
+        ChoosenBarraks = barracks;
     }
 
+    public void HideFlag()
+    {
+        if (ChoosenBarraks != null)
+        {
+            ChoosenBarraks.ShowFlag(false);
+            ChoosenBarraks = null;
+        }
+    }
 
+    public void PlaceFlag(Vector2 pos)
+    {
+        if (ChoosenBarraks != null && isWalkable((int)pos.x, (int)pos.y))
+        {
+            ChoosenBarraks.PlaceFlag(pos);
+        }
+    }
 
     public class GridObject
     {

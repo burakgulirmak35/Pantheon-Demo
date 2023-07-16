@@ -33,10 +33,11 @@ public class UIManager : MonoBehaviour
         LoadResources();
         SetButtons();
         CreateSelectUnitList();
+    }
 
-        PanelBarracks.SetActive(false);
-        PanelPowerPlant.SetActive(false);
-        PanelSelectedUnits.SetActive(false);
+    private void Start()
+    {
+        ClosePanels();
     }
 
     private void CreateSelectUnitList()
@@ -85,6 +86,7 @@ public class UIManager : MonoBehaviour
             imgPowerPlantSelected.enabled = true;
             imgBarracksSelected.enabled = false;
             GridBuildingSystem.Instance.SelectToBuild(BuildingType.PowerPlant);
+            ClosePanels();
         }
     }
 
@@ -95,6 +97,7 @@ public class UIManager : MonoBehaviour
             imgPowerPlantSelected.enabled = false;
             imgBarracksSelected.enabled = true;
             GridBuildingSystem.Instance.SelectToBuild(BuildingType.Barracks);
+            ClosePanels();
         }
     }
 
@@ -106,6 +109,7 @@ public class UIManager : MonoBehaviour
 
     public void SelectBarracks()
     {
+        GridBuildingSystem.Instance.HideFlag();
         PanelPowerPlant.SetActive(false);
         PanelBarracks.SetActive(true);
         PanelSelectedUnits.SetActive(false);
@@ -113,6 +117,7 @@ public class UIManager : MonoBehaviour
 
     public void SelectPowerPlant()
     {
+        GridBuildingSystem.Instance.HideFlag();
         PanelBarracks.SetActive(false);
         PanelPowerPlant.SetActive(true);
         PanelSelectedUnits.SetActive(false);
@@ -120,6 +125,7 @@ public class UIManager : MonoBehaviour
 
     public void SelectUnits()
     {
+        GridBuildingSystem.Instance.HideFlag();
         PanelBarracks.SetActive(false);
         PanelPowerPlant.SetActive(false);
         PanelSelectedUnits.SetActive(true);
@@ -129,5 +135,13 @@ public class UIManager : MonoBehaviour
     {
         txtSelectedCount.text = id.ToString();
         return SelectedUnitList[id - 1];
+    }
+
+    private void ClosePanels()
+    {
+        GridBuildingSystem.Instance.HideFlag();
+        PanelBarracks.SetActive(false);
+        PanelPowerPlant.SetActive(false);
+        PanelSelectedUnits.SetActive(false);
     }
 }

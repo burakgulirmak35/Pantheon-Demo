@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     private List<SoldierUnit> selectedUnitList = new List<SoldierUnit>();
     [SerializeField] private Transform selectionAreaTransform;
     private int maxSelectUnitCount;
+    private Vector3 moveToPosition;
     private void Awake()
     {
         Instance = this;
@@ -39,6 +40,8 @@ public class GameController : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
         {
+            moveToPosition = UtilsClass.GetMouseWorldPosition();
+            GridBuildingSystem.Instance.PlaceFlag(moveToPosition);
             ControlUnits();
             GridBuildingSystem.Instance.CancelBuilding();
         }
@@ -51,7 +54,6 @@ public class GameController : MonoBehaviour
 
     private void ControlUnits()
     {
-        Vector3 moveToPosition = UtilsClass.GetMouseWorldPosition();
 
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         if (hit.collider != null && hit.collider.tag.Equals("Enemy"))
@@ -76,6 +78,7 @@ public class GameController : MonoBehaviour
                 }
             }
         }
+
     }
 
     private void SelectArea()

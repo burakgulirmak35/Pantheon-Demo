@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using DG.Tweening;
 
 public class Barracks : MonoBehaviour
 {
@@ -10,7 +8,7 @@ public class Barracks : MonoBehaviour
     [SerializeField] private PrefabsSO prefabs;
     [SerializeField] private PlacedObjectTypeSO buildingType;
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private Transform firstPoint;
+    [SerializeField] private Transform flag;
     private SoldierUnit soldierUnit;
     private HealthSystem healthSystem;
 
@@ -25,12 +23,22 @@ public class Barracks : MonoBehaviour
     private void OnMouseDown()
     {
         GridBuildingSystem.Instance.SelectBuilding(this);
+        ShowFlag(true);
+    }
+
+    public void ShowFlag(bool state)
+    {
+        flag.gameObject.SetActive(state);
+    }
+
+    public void PlaceFlag(Vector2 pos)
+    {
+        flag.position = pos;
     }
 
     public void SpawnUnit(int _unitID)
     {
         soldierUnit = Instantiate(prefabs.Soldiers[_unitID], spawnPoint.position, Quaternion.identity).GetComponent<SoldierUnit>();
-        soldierUnit.MoveTo(firstPoint.position);
-
+        soldierUnit.MoveTo(flag.position);
     }
 }

@@ -204,7 +204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2145076956990964602}
   m_LocalRotation: {x: 0.000001475215, y: 0.4999989, z: -0.000000059604645, w: 0.8660261}
-  m_LocalPosition: {x: 0.68, y: -0, z: 10}
+  m_LocalPosition: {x: 0.21, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -447,7 +447,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3411047015666936767}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: -0.51, z: 0}
+  m_LocalPosition: {x: 2, y: -0.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -585,7 +585,7 @@ MonoBehaviour:
   prefabs: {fileID: 11400000, guid: 283d164945d3e964894baa6c2dcb1729, type: 2}
   buildingType: {fileID: 11400000, guid: c25b38b018769c5449929a84e48f691f, type: 2}
   spawnPoint: {fileID: 6715201415196612215}
-  firstPoint: {fileID: 7228586879340996260}
+  flag: {fileID: 7228586879340996260}
 --- !u!114 &7992420634716001062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,7 +714,7 @@ GameObject:
   - component: {fileID: 7228586879340996260}
   - component: {fileID: 7142752853934927312}
   m_Layer: 0
-  m_Name: firstPoint
+  m_Name: Flag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -727,8 +727,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6916940521301890706}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: -3, z: 0}
+  m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
+  m_LocalPosition: {x: 2, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -736,7 +736,7 @@ Transform:
   - {fileID: 7783184863160842898}
   m_Father: {fileID: 4782235985580720507}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!95 &7142752853934927312
 Animator:
   serializedVersion: 5
